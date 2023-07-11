@@ -11,6 +11,10 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
   <script>
+
+    var childName1 = "Lynn";
+    var childName2 = "Evi";
+    
     $(document).ready(function () {
     // Toggle edit panel visibility
     $("#toggleLynnPanel").click(function () {
@@ -20,6 +24,13 @@
     $("#toggleEviPanel").click(function () {
       $("#eviPanel").slideToggle();
     });
+
+    $("#lynnButton").text(childName1);
+    $("#eviButton").text(childName2);
+
+    // Update <h2> titles
+    $("#lynnSection h2").text(childName1 + "'s Spaarpot");
+    $("#eviSection h2").text(childName2 + "'s Spaarpot");
 
     // Mutation history
     var mutationHistory = [];
