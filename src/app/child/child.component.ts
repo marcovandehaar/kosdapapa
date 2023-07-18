@@ -1,7 +1,8 @@
 // child.component.ts
-import { Component, OnInit } from '@angular/core';
+import { Component, Input,OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Child } from './child.model';
+import { LocalStorageService } from '../services/local-storage.service';
 
 @Component({
   selector: 'app-child',
@@ -9,13 +10,21 @@ import { Child } from './child.model';
   styleUrls: ['./child.component.scss']
 })
 export class ChildComponent implements OnInit {
-  children: Child[] = [];
 
-  constructor(private http: HttpClient) { }
+  @Input() childData: any;
+  savings: number = 0;
+  price: number = 0;
+  canAfford: boolean = true;
 
-  ngOnInit() {
-    this.http.get<Child[]>('assets/children-data.json').subscribe(data => {
-      this.children = data;
-    });
+  constructor(private localStorageService: LocalStorageService) { }
+
+  ngOnInit(): void {
+    // Load the savings amount from local storage
+    const savedSavings = this.localStorageService.get(this.childData.name + 'Savings');
+    this.savings = savedSavings !== null ? parseFloat(savedSavings) : 0;
+  }
+
+  checkAffordability(): void {
+    this.canAfford = this.savings >= this.price;
   }
 }

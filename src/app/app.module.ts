@@ -4,17 +4,18 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ChildComponent } from './child/child.component';
+import { ChildModule } from './child/child.module'; // Import the ChildModule
+
 
 @NgModule({
   declarations: [
-    AppComponent,
-    ChildComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ChildModule
   ],
   providers: [],
   bootstrap: [AppComponent]
