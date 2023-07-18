@@ -1,34 +1,27 @@
-# Intro 
-Kosdapapa is a test project in which I have ChatGPT create a piggy bank site for my daughters in which they can check whether they can buy something
+# Kosdapapa
 
-# Features
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.6.
 
-You can define 2 names for your children. Currently only 2, no more, no less. Define them in the top of the script tag as childName1 and childName2.
+## Development server
 
-Displaying the site will give you the option to show the piggy bank of 1 of the children. Once you open one, you can check see the balance of your piggy bank and enter the price of the item you wish to buy. Clicking the 'Check' button will show you a progress bar displaying how big a part of your savings you would spend buying this item. It also displays a result test which tells you how much savings you have left after buying the item.
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-# Dev challenge
+## Code scaffolding
 
-I tried to get as much coding done by ChatGPT as possible. So just by trying to tell it what I wanted, what results I got, how I wanted it to look. Eventually, I needed quite some manual fixing...
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-I started some new threads to see whether it would significantly change (read: improve) my responses :) See ChatGPT threads:
+## Build
 
-    https://chat.openai.com/share/6c12e654-44b4-4734-859e-6759f7276f17
-    https://chat.openai.com/share/3fda0cc7-7210-4fff-aec7-08f2d684a93a
-    https://chat.openai.com/share/4c999005-26f6-4bc6-ad57-14bf2816cf3d
-    https://chat.openai.com/share/cc125b12-a4c7-40b0-90fb-5c23504e1449
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-Failed:
+## Running unit tests
 
-    https://chat.openai.com/share/6124ee18-165a-4605-8320-84dddb42e853
-        Github access and dynamic site
-        CGPT was unable to access, dynamic site without framework got too complex.
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
+## Running end-to-end tests
 
-# Based on Vanilla JavaScript App
+Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
-[Azure Static Web Apps](https://docs.microsoft.com/azure/static-web-apps/overview) allows you to easily build JavaScript apps in minutes. Use this repo with the [quickstart](https://docs.microsoft.com/azure/static-web-apps/getting-started?tabs=vanilla-javascript) to build and customize a new static site.
+## Further help
 
-This repo is used as a starter for a _very basic_ HTML web application using no front-end frameworks.
-
-This repo has a dev container. This means if you open it inside a [GitHub Codespace](https://github.com/features/codespaces), or using [VS Code with the remote containers extension](https://code.visualstudio.com/docs/remote/containers), it will be opened inside a container with all the dependencies already installed.
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
