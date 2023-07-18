@@ -1,17 +1,18 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-//import { LynnComponent } from './lynn/lynn.component';
-//import { EviComponent } from './evi/evi.component';
+import { RouterModule, Routes } from '@angular/router';
+import { ChildComponent } from './child/child.component'; // Import your child component here
 
 const routes: Routes = [
-  { path: '', redirectTo: '/lynn', pathMatch: 'full' },
-  { path: 'lynn', component: LynnComponent },
-  { path: 'evi', component: EviComponent },
-  // Add more routes for other components if needed
+  // Define routes for each child component dynamically
+  { path: 'child/:childName', component: ChildComponent },
+  // Add any other routes if needed
+  // ...
+  // Define a default route (if no child name is provided)
+  { path: '**', redirectTo: '/child/Lynn', pathMatch: 'full' }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

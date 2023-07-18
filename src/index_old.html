@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Kosdapapa!?</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="shortcut icon" type="image/png" href="ios_icon.png"/>
+  <link rel="apple-touch-icon" href="ios_icon.png">
+  <script>
+
+    var childName1 = "Lynn";
+    var childName2 = "Evi";
+    
+    $(document).ready(function () {
+    // Toggle edit panel visibility
+    $("#toggleLynnPanel").click(function () {
+      $("#lynnPanel").slideToggle();
+    });
+
+    $("#toggleEviPanel").click(function () {
+      $("#eviPanel").slideToggle();
+    });
+
+    $("#lynnButton").text(childName1);
+    $("#eviButton").text(childName2);
+
+    // Update <h2> titles
+    $("#lynnSection h2").text(childName1 + "'s Spaarpot");
+    $("#eviSection h2").text(childName2 + "'s Spaarpot");
+
+    // Mutation history
+    var mutationHistory = [];
+
+    // Add/Remove amounts
+    function updateSavingsAmount(section, amount) {
+      var savingsInput = $(section + "Savings");
+      var editSavingsInput = $(section + "EditSavings");
+      var currentSavings = parseFloat($(section+"Savings").val());
+      var newSavings = currentSavings + amount;
+      
+      var mutationText = currentSavings.toFixed(2) + " " + (amount > 0 ? "+" : "-") + " " + Math.abs(amount).toFixed(2) + " = " + newSavings.toFixed(2);
+
+      //console.log(mutationText);
+      //console.log(mutationHistory);
+
+      savingsInput.val(newSavings.toFixed(2));
+      editSavingsInput.val(newSavings.toFixed(2));
+
+      // Add mutation to history
+      mutationHistory.unshift(mutationText);
+
+        // Limit history to 3 mutations
+      if (mutationHistory.length > 3) {
+        mutationHistory.pop();
+      }
+
+      // Update feedback element
+      var feedbackElement = $(section+"MutationFeedback");
+
+      //console.log(feedbackElement);
+
+      feedbackElement.html("");
+      for (var i = 0; i < mutationHistory.length; i++) {
+        feedbackElement.append("<p>" + mutationHistory[i] + "</p>");
+      }
+      
+
+      updateSavingsBar("#"+section+"Savings", ".savings-bar", "#ff0000", 0);
+      localStorage.setItem("#"+section+"Savings", newSavings);
+    }
+
+    // Handle mutation button clicks for Lynn
+    $(".lynn-mutation-button").click(function () {
+      var amount = parseFloat($(this).data("amount"));
+      updateSavingsAmount("#lynn", amount);
+    });
+
+    // Handle mutation button clicks for Evi
+    $(".evi-mutation-button").click(function () {
+      var amount = parseFloat($(this).data("amount"));
+      updateSavingsAmount("#evi", amount);
+    });
+    
+
+
+    // Function to update savings bar
+    function updateSavingsBar(savingsInput, savingsBar, color, price = 0, canAfford = true) {
+      
+      if(price){
+        var savings = parseInt($(savingsInput).val());
+        var difference = savings - price;
+        var fillPercentage = (price / savings) * 100;
+        var remainderPercentage = (savings - price) / savings * 100;
+
+        //console.log("Spaargeld:" + savings);
+        //console.log("price:" + price);
+        //console.log("percentage:" + fillPercentage);
+        //console.log($(savingsBar).find(".savings-fill"));
+        $(savingsBar).find(".savings-fill").css({
+          "width": `${fillPercentage}%`
+        });
+
+        $(savingsBar).find(".savings-remainder").css({
+          "width": `${remainderPercentage}%`
+        });
+      }
+    }
+
+
+    // Lynn's Section
+    $("#lynnButton").click(function () {
+      $("#eviSection").hide();
+      $("#lynnSection").show();
+    });
+
+    $("#lynnBuyBtn").click(function () {
+      var savings = parseInt($("#lynnSavings").val());
+      var price = parseInt($("#lynnPrice").val());
+
+      // Check affordability and update savings bar
+      var canAfford = savings >= price;
+      if(price)
+      {
+        updateSavingsBar("#lynnSavings", "#lynnSavingsBar", "#f76c6c", price, canAfford);
+
+        // Display affordability result
+        if (canAfford) {
+          $("#lynnResult").removeClass("failure").addClass("success").text("Je kunt dit kopen! Dan heb je nog €" + (savings - price) + " over in je spaarpot.");
+        } else {
+          $("#lynnResult").removeClass("success").addClass("failure").text("Je kunt dit helaas niet kopen. Je hebt niet genoeg spaargeld.");
+        }
+      }
+
+      // Store updated savings value in local storage
+      localStorage.setItem("lynnSavings", savings);
+    });
+
+    // Evi's Section
+    $("#eviButton").click(function () {
+      $("#lynnSection").hide();
+      $("#eviSection").show();
+    });
+
+    $("#eviBuyBtn").click(function () {
+      var savings = parseInt($("#eviSavings").val());
+      var price = parseInt($("#eviPrice").val());
+      
+      if(price)
+      {
+        // Check affordability and update savings bar
+        var canAfford = savings >= price;
+        updateSavingsBar("#eviSavings", "#eviSavingsBar", "#1f78b4", price, canAfford);
+
+        // Display affordability result
+        if (canAfford) {
+          $("#eviResult").removeClass("failure").addClass("success").text("Je kunt dit kopen! Dan heb je nog €" + (savings - price) + " over in je spaarpot.");
+        } else {
+          $("#eviResult").removeClass("success").addClass("failure").text("Je kunt dit helaas niet kopen. Je hebt niet genoeg spaargeld.");
+        }
+      }
+
+      // Store updated savings value in local storage
+      localStorage.setItem("eviSavings", savings);
+    });
+
+    // Initialize savings from local storage or set to 0 if not present
+    var lynnSavings = localStorage.getItem("lynnSavings");
+    var eviSavings = localStorage.getItem("eviSavings");
+
+    if (!lynnSavings) {
+      lynnSavings = 0;
+    }
+
+    if (!eviSavings) {
+      eviSavings = 0;
+    }
+
+    $("#lynnSavings").val(lynnSavings);
+    $("#eviSavings").val(eviSavings);
+    $("#lynnPrice").val(""); // Set the price item text field to empty
+    $("#eviPrice").val(""); // Set the price item text field to empty
+
+
+    // Set initial value for Lynn's savings input
+    var lynnSavingsValue = parseFloat($("#lynnSavings").val());
+    $("#lynnEditSavings").val(lynnSavingsValue.toFixed(2));
+
+    // Set initial value for Evi's savings input
+    var eviSavingsValue = parseFloat($("#eviSavings").val());
+    $("#eviEditSavings").val(eviSavingsValue.toFixed(2));
+
+    // Update Lynn's savings amount
+    $("#lynnEditSavings").on("input", function () {
+      var lynnEditSavingsValue = parseFloat($(this).val());
+      $("#lynnSavings").val(lynnEditSavingsValue.toFixed(2));
+    });
+
+    // Update Evi's savings amount
+    $("#eviEditSavings").on("input", function () {
+      var eviEditSavingsValue = parseFloat($(this).val());
+      $("#eviSavings").val(eviEditSavingsValue.toFixed(2));
+    });
+
+    // Update savings bar on page load
+    updateSavingsBar("#lynnSavings", "#lynnSavingsBar", "#ff0000", 0, true); // Bright, vibrant red for Lynn
+    updateSavingsBar("#eviSavings", "#eviSavingsBar", "#0000ff", 0, true); // Cute shade of bright blue for Evi
+
+  });
+  </script>
+</head>
+
+<body>
+  
+
+
+  <main>
+    <header>
+      <h4 class="header-text">Voor wie wil je de spaarpot zien?</h4>
+      <button id="lynnButton">Lynn</button>
+      <button id="eviButton">Evi</button>
+    </header>
+    <div id="lynnSection" class="section" style="display: none;">
+      <div>
+        <h2>Lynn's Spaarpot</h2>
+
+      </div>
+      <div class="container">
+        <div class="row savingsdetail">
+          <div class="col-md-6">
+            <main>
+              <div class="savings-info">
+                <h4>Spaargeld:</h4>
+                <input type="text" id="lynnSavings" readonly>
+                <button id="toggleLynnPanel" class="toggle-panel" title="Geld in of uit je spaarpot doen"><i class="fas fa-piggy-bank"></i></button>
+
+              </div>
+              <div id="lynnPanel" class="edit-panel">
+                <input type="number" id="lynnEditSavings" step="0.01">
+                <div class="buttons-row">
+                  <div class="buttons-row-item">
+                    <button class="lynn-mutation-button addButton" data-amount="0.50">+€0.50</button>
+                    <button class="lynn-mutation-button addButton" data-amount="1.00">+€1.00</button>
+                    <button class="lynn-mutation-button addButton" data-amount="5.00">+€5.00</button>
+                    <button class="lynn-mutation-button addButton" data-amount="10.00">+€10.00</button>
+                  </div>
+                  <div class="buttons-row-item">
+                    <button class="lynn-mutation-button substractButton" data-amount="-0.50">-€0.50</button>
+                    <button class="lynn-mutation-button substractButton" data-amount="-1.00">-€1.00</button>
+                    <button class="lynn-mutation-button substractButton" data-amount="-5.00">-€5.00</button>
+                    <button class="lynn-mutation-button substractButton" data-amount="-10.00">-€10.00</button>
+                  </div>
+                  <div id="lynnMutationFeedback" class="mutationFeedback"></div>
+                </div>
+              </div>
+              <div class="savings-bar" id="lynnSavingsBar" style="background-color: blue;">
+                <div class="savings-fill"></div>
+                <div class="savings-remainder"></div>
+              </div>
+              <h4>Prijs:</h4>
+              <input type="number" id="lynnPrice" step="0.01" placeholder="Hoeveel kost het?">
+              <button id="lynnBuyBtn" class="btn-primary">Check of je dit kunt kopen</button>
+              <div id="lynnResult" class="result-message"></div>
+            </main>
+          </div>
+          <div class="col-md-6">
+            <img
+              src="https://i.graphicmama.com/uploads/2023/3/6414793b7befa-602a4f0ed6583-Flying%20Robot%20Cartoon%20Animated%20GIFs.gif"
+              alt="Lynn's Robot GIF" style="width: 100%;">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="eviSection" class="section" style="display: none;">
+      <div>
+        <h2>Evi's Spaarpot</h2>
+
+      </div>
+      <div class="container">
+        <div class="row savingsdetail">
+          <div class="col-md-6">
+            <main>
+              <div class="savings-info">
+                <h4>Spaargeld:</h4>
+                <input type="text" id="eviSavings" readonly>
+                <button id="toggleEviPanel" class="toggle-panel" title="Geld in of uit je spaarpot doen"><i class="fas fa-piggy-bank"></i></button>
+              </div>
+              <div id="eviPanel" class="edit-panel">
+                <input type="number" id="eviEditSavings" step="0.01">
+                <div class="buttons-row">
+                  <div class="buttons-row-item">
+                    <button class="evi-mutation-button addButton" data-amount="0.50">+€0.50</button>
+                    <button class="evi-mutation-button addButton" data-amount="1.00">+€1.00</button>
+                    <button class="evi-mutation-button addButton" data-amount="5.00">+€5.00</button>
+                    <button class="evi-mutation-button addButton" data-amount="10.00">+€10.00</button>
+                  </div>
+                  <div class="buttons-row-item">
+                    <button class="evi-mutation-button substractButton" data-amount="-0.50">-€0.50</button>
+                    <button class="evi-mutation-button substractButton" data-amount="-1.00">-€1.00</button>
+                    <button class="evi-mutation-button substractButton" data-amount="-5.00">-€5.00</button>
+                    <button class="evi-mutation-button substractButton" data-amount="-10.00">-€10.00</button>
+                  </div>
+                  <div id="eviMutationFeedback" class="mutationFeedback"></div>
+                </div>
+              </div>
+              <div class="savings-bar" id="eviSavingsBar" style="background-color: blue;">
+                <div class="savings-fill"></div>
+                <div class="savings-remainder"></div>
+              </div>
+              <h4>Prijs:</h4>
+              <input type="number" id="eviPrice" step="0.01" placeholder="Hoeveel kost het?">
+              <button id="eviBuyBtn" class="btn-primary">Check of je dit kunt kopen</button>
+              <div id="eviResult" class="result-message"></div>
+            </main>
+          </div>
+          <div class="col-md-6">
+            <img src="https://media2.giphy.com/media/S3oAaB2MAr7Th7Lczr/giphy.gif" alt="Evi's Unicorn GIF"
+              style="width: 100%;">
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </main>
+</body>
+
+</html>
