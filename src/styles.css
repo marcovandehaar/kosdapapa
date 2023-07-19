@@ -110,11 +110,6 @@ h4 {
   color: #333;
 }
 
-.section {
-  border-radius: 10px;
-  /* Add rounded corners to the section */
-}
-
 
 input[type="number"],
 input[type="text"] {

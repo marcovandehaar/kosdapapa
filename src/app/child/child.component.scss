@@ -3,3 +3,26 @@
     background-color: #ebcbff;
     /* Add rounded corners to the section */
   }
+
+/* child.component.scss */
+#lynnPanel {
+    /* Initially hidden with opacity 0 and shifted above its original position */
+  
+  /* Add any other styling you need for the lynnPanel here */
+  z-index: 1; /* Set a higher z-index value to ensure it appears on top of the .section */
+  position: relative; /* or position: absolute; */
+  }
+  
+  /* When the lynnPanel is in the 'in' state, it will slide in from the top and become visible */
+  #lynnPanel.ng-trigger-in {
+    transform: translateY(0);
+    
+  }
+
+  .section {
+    border-radius: 10px;
+    background-color: #ebcbff;
+    /* Add rounded corners to the section */
+    position: relative; /* Set the position to relative */
+    z-index: 0; /* Set a lower z-index value */
+  }

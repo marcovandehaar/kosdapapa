@@ -1,7 +1,6 @@
-<ng-container *ngFor="let child of childData">
-    <div class="section" [style.background-color]="child.backgroundColor">
+    <div class="section" [style.background-color]="childData?.backgroundColor">
         <div>
-            <h2>{{ child.name }}'s Spaarpot</h2>
+            <h2>{{ childData?.name }}'s Spaarpot</h2>
         </div>
         <div class="container">
             <div class="row savingsdetail">
@@ -10,11 +9,11 @@
                         <div class="savings-info">
                             <h4>Spaargeld:</h4>
                             <input type="text" [(ngModel)]="savings" readonly>
-                            <button id="toggleLynnPanel" class="toggle-panel" title="Geld in of uit je spaarpot doen"><i
+                            <button id="toggleLynnPanel" class="toggle-panel" title="Geld in of uit je spaarpot doen" (click)="togglePanel()"><i
                                     class="fas fa-piggy-bank"></i></button>
 
                         </div>
-                        <div id="lynnPanel" class="edit-panel">
+                        <div id="lynnPanel" [@slideInOut]="panelState">
                             <input type="number" id="lynnEditSavings" step="0.01">
                             <div class="buttons-row">
                                 <div class="buttons-row-item">
@@ -57,4 +56,3 @@
             </div>
         </div>
     </div>
-</ng-container>

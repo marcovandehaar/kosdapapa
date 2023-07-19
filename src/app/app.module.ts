@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ChildModule } from './child/child.module'; // Import the ChildModule
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // Import the BrowserAnimationsModule
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { ChildModule } from './child/child.module'; // Import the ChildModule
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ChildModule
+    ChildModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -21,6 +21,10 @@ export class AppComponent implements OnInit {
   }
 
   toggleChildSection(child: Child) {
-    this.selectedChild = this.selectedChild === child ? null : child;
+    if (this.selectedChild === child) {
+      this.selectedChild = null;
+    } else {
+      this.selectedChild = child;
+    }
   }
 }
