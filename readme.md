@@ -1,6 +1,9 @@
 # Intro 
 Kosdapapa is a test project in which I have ChatGPT create a piggy bank site for my daughters in which they can check whether they can buy something
 
+# Disclaimer
+This is a hobby project  for personal use only. This allowed me to skip important aspects like authorization and proper handling and sharing of personal "financial data". Feel free to use this in any way you see fit, but please realize that I made conscious choices about not implementing these important aspects so I could keep the complexity low. You should make your own choices concerning aspects like authorization, security, proper usage of personal data etc., matching your own goals and context.
+
 # Features
 
 You can define 2 names for your children. Currently only 2, no more, no less. Define them in the top of the script tag as childName1 and childName2.
