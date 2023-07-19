@@ -1,5 +1,5 @@
 <ng-container *ngFor="let child of childData">
-    <div class="section">
+    <div class="section" [style.background-color]="child.backgroundColor">
         <div>
             <h2>{{ child.name }}'s Spaarpot</h2>
         </div>
