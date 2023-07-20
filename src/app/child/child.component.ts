@@ -43,12 +43,13 @@ export class ChildComponent implements OnChanges   {
     if (changes['childData'] && changes['childData'].currentValue) {
       this.loadSavingsFromLocalStorage();
       this.updateSavingsPercentage(); 
-      this.updateProgressBar();
+      this.updateProgressBar();      
     }
   }
 
   checkAffordability(): void {
     this.canAfford = this.savings >= this.price;
+    console.log('canafford: ' + this.canAfford);
   }
 
   private loadSavingsFromLocalStorage(): void {
@@ -109,11 +110,13 @@ export class ChildComponent implements OnChanges   {
   }
 
   updateProgressBar(): void {
+    console.log('updating progress bar...');
     if (this.price > 0 && this.savings > 0) {
       this.savingsPercentage = (this.price / this.savings) * 100;
     } else {
       this.savingsPercentage = 0;
     }
+    this.checkAffordability();
   }
 
   

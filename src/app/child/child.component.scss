@@ -26,3 +26,23 @@
     position: relative; /* Set the position to relative */
     z-index: 0; /* Set a lower z-index value */
   }
+
+  .editPanel {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .result-message {
+    padding: 10px;
+    color: #fff;
+    font-weight: bold;
+  }
+  
+  .success {
+    background-color: #6eff91; /* Green background for success message */
+  }
+  
+  .failure {
+    background-color: #ff6e6e; /* Red background for failure message */
+  }
+  

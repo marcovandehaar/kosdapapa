@@ -13,7 +13,7 @@
                                     class="fas fa-piggy-bank"></i></button>
 
                         </div>
-                        <div id="lynnPanel" [@slideInOut]="panelState">
+                        <div id="lynnPanel" [@slideInOut]="panelState" class="editPanel">
                             <input type="number" [(ngModel)]="savings" id="lynnEditSavings" step="0.01" >
                             <div class="buttons-row">
                                 <div class="buttons-row-item">
@@ -42,13 +42,16 @@
                             <div class="savings-remainder" [style.width.%]="100 - savingsPercentage"></div>
                           </div>                          
                         <h4>Prijs:</h4>
-                        <input type="number" [(ngModel)]="price" step="0.01" placeholder="Hoeveel kost het?" (input)="updateProgressBar()">>
-                        <button (click)="checkAffordability()" class="btn-primary">Check of je dit kunt kopen</button>
+                        <input type="number" [(ngModel)]="price" step="0.01" placeholder="Hoeveel kost het?" (input)="updateProgressBar()">
                         <div [ngClass]="{'result-message': true, 'success': canAfford, 'failure': !canAfford}">
-                            {{ canAfford ? "Je kunt dit kopen! Dan heb je nog €" + (savings - price).toFixed(2) + " over
-                            in
-                            je spaarpot." : "Je kunt dit helaas niet kopen. Je hebt niet genoeg spaargeld." }}
-                        </div>
+                            <ng-container *ngIf="canAfford; else failureMessage">
+                              Je kunt dit kopen! Dan heb je nog €{{ (savings - price).toFixed(2) }} over in je spaarpot.
+                            </ng-container>
+                            <ng-template #failureMessage>
+                              Je kunt dit helaas niet kopen. Je hebt niet genoeg spaargeld.
+                            </ng-template>
+                          </div>
+                          
                     </main>
                 </div>
                 <div class="col-md-6">
