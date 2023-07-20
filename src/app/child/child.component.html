@@ -36,11 +36,11 @@
                             </div>
                         </div>
                         <div class="savings-bar" id="lynnSavingsBar" style="background-color: blue;">
-                            <div class="savings-fill"></div>
-                            <div class="savings-remainder"></div>
-                        </div>
+                            <div class="savings-fill" [style.width.%]="savingsPercentage"></div>
+                            <div class="savings-remainder" [style.width.%]="100 - savingsPercentage"></div>
+                          </div>                          
                         <h4>Prijs:</h4>
-                        <input type="number" [(ngModel)]="price" step="0.01" placeholder="Hoeveel kost het?" >>
+                        <input type="number" [(ngModel)]="price" step="0.01" placeholder="Hoeveel kost het?" (input)="updateProgressBar()">>
                         <button (click)="checkAffordability()" class="btn-primary">Check of je dit kunt kopen</button>
                         <div [ngClass]="{'result-message': true, 'success': canAfford, 'failure': !canAfford}">
                             {{ canAfford ? "Je kunt dit kopen! Dan heb je nog €" + (savings - price).toFixed(2) + " over

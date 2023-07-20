@@ -30,6 +30,7 @@ export class ChildComponent implements OnChanges   {
 
   @Input() childData?: Child;
   savings: number = 0;
+  savingsPercentage: number = 0;
   price: number = 0;
   canAfford: boolean = true;
   panelState = 'out';
@@ -39,6 +40,8 @@ export class ChildComponent implements OnChanges   {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['childData'] && changes['childData'].currentValue) {
       this.loadSavingsFromLocalStorage();
+      this.updateSavingsPercentage(); 
+      this.updateProgressBar();
     }
   }
 
@@ -50,6 +53,15 @@ export class ChildComponent implements OnChanges   {
     if (this.childData && this.childData.name) {
       const savedSavings = this.localStorageService.get(this.childData.name + 'Savings');
       this.savings = savedSavings !== null ? parseFloat(savedSavings) : 0;
+    }
+  }
+
+  private updateSavingsPercentage(): void {
+    // Calculate the percentage of the price related to the total savings amount
+    if (this.price > 0 && this.savings > 0) {
+      this.savingsPercentage = (this.price / this.savings) * 100;
+    } else {
+      this.savingsPercentage = 0;
     }
   }
 
@@ -83,6 +95,14 @@ export class ChildComponent implements OnChanges   {
       maximumFractionDigits: 2,
       currency: 'EUR',
     }).format(value);
+  }
+
+  updateProgressBar(): void {
+    if (this.price > 0 && this.savings > 0) {
+      this.savingsPercentage = (this.price / this.savings) * 100;
+    } else {
+      this.savingsPercentage = 0;
+    }
   }
 
   
