@@ -8,29 +8,29 @@
                     <main>
                         <div class="savings-info">
                             <h4>Spaargeld:</h4>
-                            <input type="text" [(ngModel)]="savings" readonly>
+                            <input type="text" [value]="formatAmount(savings)" readonly>
                             <button id="toggleLynnPanel" class="toggle-panel" title="Geld in of uit je spaarpot doen" (click)="togglePanel()"><i
                                     class="fas fa-piggy-bank"></i></button>
 
                         </div>
                         <div id="lynnPanel" [@slideInOut]="panelState">
-                            <input type="number" id="lynnEditSavings" step="0.01">
+                            <input type="number" [(ngModel)]="savings" id="lynnEditSavings" step="0.01" >
                             <div class="buttons-row">
                                 <div class="buttons-row-item">
-                                    <button class="lynn-mutation-button addButton" data-amount="0.50">+€0.50</button>
-                                    <button class="lynn-mutation-button addButton" data-amount="1.00">+€1.00</button>
-                                    <button class="lynn-mutation-button addButton" data-amount="5.00">+€5.00</button>
-                                    <button class="lynn-mutation-button addButton" data-amount="10.00">+€10.00</button>
+                                    <button class="lynn-mutation-button addButton" (click)="addMoney(0.50)">+€0.50</button>
+                                    <button class="lynn-mutation-button addButton" (click)="addMoney(1.00)">+€1.00</button>
+                                    <button class="lynn-mutation-button addButton" (click)="addMoney(5.00)">+€5.00</button>
+                                    <button class="lynn-mutation-button addButton" (click)="addMoney(10.00)">+€10.00</button>
                                 </div>
                                 <div class="buttons-row-item">
                                     <button class="lynn-mutation-button substractButton"
-                                        data-amount="-0.50">-€0.50</button>
+                                        (click)="addMoney(-0.50)">-€0.50</button>
                                     <button class="lynn-mutation-button substractButton"
-                                        data-amount="-1.00">-€1.00</button>
+                                        (click)="addMoney(-1.00)">-€1.00</button>
                                     <button class="lynn-mutation-button substractButton"
-                                        data-amount="-5.00">-€5.00</button>
+                                        (click)="addMoney(-5.00)">-€5.00</button>
                                     <button class="lynn-mutation-button substractButton"
-                                        data-amount="-10.00">-€10.00</button>
+                                        (click)="addMoney(-10.00)">-€10.00</button>
                                 </div>
                                 <div id="lynnMutationFeedback" class="mutationFeedback"></div>
                             </div>
@@ -40,7 +40,7 @@
                             <div class="savings-remainder"></div>
                         </div>
                         <h4>Prijs:</h4>
-                        <input type="number" [(ngModel)]="price" step="0.01" placeholder="Hoeveel kost het?">
+                        <input type="number" [(ngModel)]="price" step="0.01" placeholder="Hoeveel kost het?" >>
                         <button (click)="checkAffordability()" class="btn-primary">Check of je dit kunt kopen</button>
                         <div [ngClass]="{'result-message': true, 'success': canAfford, 'failure': !canAfford}">
                             {{ canAfford ? "Je kunt dit kopen! Dan heb je nog €" + (savings - price).toFixed(2) + " over

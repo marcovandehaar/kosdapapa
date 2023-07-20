@@ -53,10 +53,36 @@ export class ChildComponent implements OnChanges   {
     }
   }
 
+  addMoney(amount: number): void {
+    this.savings += amount;
+    this.updateLocalStorageSavings();
+  }
+
+  subtractMoney(amount: number): void {
+    this.savings -= amount;
+    this.updateLocalStorageSavings();
+  }
+
+  private updateLocalStorageSavings(): void {
+    if (this.childData && this.childData.name) {
+      this.localStorageService.save(this.childData.name + 'Savings', this.savings.toFixed(2));
+    }
+  }
+
   togglePanel(): void {
     console.log('setting panelstate from: ' + this.panelState + ' to ...');
     this.panelState = this.panelState === 'in' ? 'out' : 'in';
     console.log(this.panelState);
+  }
+
+  formatAmount(value: number): string {
+    const userLocale = navigator.language;
+    return new Intl.NumberFormat(userLocale, {
+      style: 'currency',
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+      currency: 'EUR',
+    }).format(value);
   }
 
   
