@@ -31,9 +31,11 @@ export class ChildComponent implements OnChanges   {
   @Input() childData?: Child;
   savings: number = 0;
   savingsPercentage: number = 0;
+  previousSavings: number = 0;
   price: number = 0;
   canAfford: boolean = true;
   panelState = 'out';
+  lastModifications: string[] = [];
 
   constructor(private localStorageService: LocalStorageService) { }
 
@@ -66,13 +68,22 @@ export class ChildComponent implements OnChanges   {
   }
 
   addMoney(amount: number): void {
+    console.log('adding amount: ' + amount);
+    this.previousSavings = this.savings;
     this.savings += amount;
     this.updateLocalStorageSavings();
+    if (this.lastModifications.length > 3) {
+      this.lastModifications.pop();
+    }
+    this.showFeedback(`${this.formatAmount(this.previousSavings)} ${amount >= 0 ? '+' : '-'} ${this.formatAmount(Math.abs(amount))} = ${this.formatAmount(this.savings)}.`);
   }
+  
 
-  subtractMoney(amount: number): void {
-    this.savings -= amount;
-    this.updateLocalStorageSavings();
+  showFeedback(modificationSum: string): void {
+    this.lastModifications.unshift(modificationSum);
+    if (this.lastModifications.length > 3) {
+      this.lastModifications.pop();
+    }
   }
 
   private updateLocalStorageSavings(): void {

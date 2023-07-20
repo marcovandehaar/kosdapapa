@@ -32,7 +32,9 @@
                                     <button class="lynn-mutation-button substractButton"
                                         (click)="addMoney(-10.00)">-€10.00</button>
                                 </div>
-                                <div id="lynnMutationFeedback" class="mutationFeedback"></div>
+                                <div class="feedback-panel" class="mutationFeedback">
+                                    <p *ngFor="let modification of lastModifications">{{ modification }}</p>
+                                  </div>
                             </div>
                         </div>
                         <div class="savings-bar" id="lynnSavingsBar" style="background-color: blue;">
