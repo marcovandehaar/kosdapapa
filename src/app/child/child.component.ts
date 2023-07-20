@@ -49,7 +49,7 @@ export class ChildComponent implements OnChanges   {
 
   checkAffordability(): void {
     this.canAfford = this.savings >= this.price;
-    console.log('canafford: ' + this.canAfford);
+    //console.log('canafford: ' + this.canAfford);
   }
 
   private loadSavingsFromLocalStorage(): void {
@@ -69,7 +69,7 @@ export class ChildComponent implements OnChanges   {
   }
 
   addMoney(amount: number): void {
-    console.log('adding amount: ' + amount);
+    //console.log('adding amount: ' + amount);
     this.previousSavings = this.savings;
     this.savings += amount;
     this.updateLocalStorageSavings();
@@ -77,6 +77,7 @@ export class ChildComponent implements OnChanges   {
       this.lastModifications.pop();
     }
     this.showFeedback(`${this.formatAmount(this.previousSavings)} ${amount >= 0 ? '+' : '-'} ${this.formatAmount(Math.abs(amount))} = ${this.formatAmount(this.savings)}.`);
+    this.updateProgressBar();
   }
   
 
@@ -94,9 +95,9 @@ export class ChildComponent implements OnChanges   {
   }
 
   togglePanel(): void {
-    console.log('setting panelstate from: ' + this.panelState + ' to ...');
+    //console.log('setting panelstate from: ' + this.panelState + ' to ...');
     this.panelState = this.panelState === 'in' ? 'out' : 'in';
-    console.log(this.panelState);
+    //console.log(this.panelState);
   }
 
   formatAmount(value: number): string {
@@ -110,7 +111,7 @@ export class ChildComponent implements OnChanges   {
   }
 
   updateProgressBar(): void {
-    console.log('updating progress bar...');
+    //console.log('updating progress bar...');
     if (this.price > 0 && this.savings > 0) {
       this.savingsPercentage = (this.price / this.savings) * 100;
     } else {

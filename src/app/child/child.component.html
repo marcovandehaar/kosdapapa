@@ -43,6 +43,7 @@
                           </div>                          
                         <h4>Prijs:</h4>
                         <input type="number" [(ngModel)]="price" step="0.01" placeholder="Hoeveel kost het?" (input)="updateProgressBar()">
+                        <ng-container *ngIf="price > 0">
                         <div [ngClass]="{'result-message': true, 'success': canAfford, 'failure': !canAfford}">
                             <ng-container *ngIf="canAfford; else failureMessage">
                               Je kunt dit kopen! Dan heb je nog €{{ (savings - price).toFixed(2) }} over in je spaarpot.
@@ -51,6 +52,7 @@
                               Je kunt dit helaas niet kopen. Je hebt niet genoeg spaargeld.
                             </ng-template>
                           </div>
+                        </ng-container>
                           
                     </main>
                 </div>
