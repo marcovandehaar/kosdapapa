@@ -45,4 +45,75 @@
   .failure {
     background-color: #ff6e6e; /* Red background for failure message */
   }
+
+  
+    i {
+      display: block;
+    }
+    
+    .toggle-panel {
+      background-color: #FFD700;
+      color: #b97a00;;
+      font-size: 32px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      padding-top: 0px;
+      padding-bottom: 2px;
+      padding-left: 8px;
+      text-align: center;
+    }
+
+    .toggle-panel:hover {
+      background-color: #FFEC8B;
+    }
+
+    .money-panel {
+      /* Add other styling you need for the money panel */
+      overflow: hidden;
+      margin-top: 10px;
+     
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      
+      transition: max-height 0.3s ease-in-out;
+      display: flex;
+      flex-wrap: wrap;
+    
+      .money-panel-content {
+        padding: 10px;
+    
+        .coin-info {
+          display: flex;
+          align-items: center;
+          margin: 5px;
+    
+          img {
+            width: 100px; /* Adjust the size as needed */
+            height: auto;
+            margin-right: 5px;
+          }
+    
+          .coin-count {
+            font-weight: bold;
+          }
+        }
+      }
+    }
+    
+    /* When the moneyPanel is in the 'in' state, it will slide in from the top and become visible */
+    #moneyPanel.ng-trigger-in {
+      max-height: 200px; /* Adjust the height as needed */
+    }
+
+    .coin-info img {
+      width: 60px; /* Increase the width to make the images larger */
+      height: auto;
+      margin-right: 5px;
+    }
+    
+  
   

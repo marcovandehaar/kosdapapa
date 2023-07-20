@@ -34,25 +34,6 @@ animation: gradient 15s ease infinite;
   /* Light shade of blue for Evi */
 }
 
-.toggle-panel {
-  background-color: #FFD700;
-  color: #b97a00;;
-  font-size: 32px;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  padding-top: 0px;
-  padding-bottom: 2px;
-  padding-left: 8px;
-  text-align: center;
-}
-
-.toggle-panel:hover {
-  background-color: #FFEC8B;
-}
 
 .edit-panel {
   display: none;

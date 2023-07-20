@@ -52,7 +52,19 @@
                               Je kunt dit helaas niet kopen. Je hebt niet genoeg spaargeld.
                             </ng-template>
                           </div>
-                        </ng-container>
+                                                <button class="toggle-panel" (click)="toggleMoneyPanel()"><i class="fas fa-euro-sign"></i></button>
+                        
+                        <div id="moneyPanel" [@slideInOut]="moneyPanelState" class="money-panel">
+                            <div class="money-panel-content">
+                              <span>Wow, {{ formatAmount(price) }} dat is zoveel geld:</span>
+                              <div *ngFor="let coin of getBillsAndCoinsNeeded()" class="coin-info">
+                                <img [src]="coin.image" alt="Coin Image">
+                                <span class="coin-count">{{ coin.count }} X {{ formatAmount(coin.value) }}</span>
+                              </div>
+                            </div>
+                          </div>
+
+                          </ng-container>
                           
                     </main>
                 </div>

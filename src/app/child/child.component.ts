@@ -1,5 +1,5 @@
 // child.component.ts
-import { Component, Input,OnChanges, SimpleChanges  } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Child } from './child.model';
 import { LocalStorageService } from '../services/local-storage.service';
@@ -26,7 +26,7 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
     ])
   ]
 })
-export class ChildComponent implements OnChanges   {
+export class ChildComponent implements OnChanges {
 
   @Input() childData?: Child;
   savings: number = 0;
@@ -35,15 +35,17 @@ export class ChildComponent implements OnChanges   {
   price: number = 0;
   canAfford: boolean = true;
   panelState = 'out';
+  moneyPanelState = 'out';
   lastModifications: string[] = [];
+
 
   constructor(private localStorageService: LocalStorageService) { }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['childData'] && changes['childData'].currentValue) {
       this.loadSavingsFromLocalStorage();
-      this.updateSavingsPercentage(); 
-      this.updateProgressBar();      
+      this.updateSavingsPercentage();
+      this.updateProgressBar();
     }
   }
 
@@ -79,7 +81,7 @@ export class ChildComponent implements OnChanges   {
     this.showFeedback(`${this.formatAmount(this.previousSavings)} ${amount >= 0 ? '+' : '-'} ${this.formatAmount(Math.abs(amount))} = ${this.formatAmount(this.savings)}.`);
     this.updateProgressBar();
   }
-  
+
 
   showFeedback(modificationSum: string): void {
     this.lastModifications.unshift(modificationSum);
@@ -120,5 +122,37 @@ export class ChildComponent implements OnChanges   {
     this.checkAffordability();
   }
 
+  // Add this function to toggle the money panel
+  toggleMoneyPanel(): void {
+    this.moneyPanelState = this.moneyPanelState === 'in' ? 'out' : 'in';
+  }
+
+  // Add this function to calculate the bills and coins needed for the price
+  getBillsAndCoinsNeeded(): { value: number, count: number, image: string }[] {
+    const billsAndCoins = [
+      { value: 50, count: 0, image: '../../assets/img/50_euro.png' },
+      { value: 20, count: 0, image: '../../assets/img/20_euro.png' },
+      { value: 10, count: 0, image: '../../assets/img/10_euro.png' },
+      { value: 5, count: 0, image: '../../assets/img/5_euro.png' },
+      { value: 2, count: 0, image: '../../assets/img/2_euro.png' },
+      { value: 1, count: 0, image: '../../assets/img/1_euro.png' },
+      { value: 0.5, count: 0, image: '../../assets/img/50_cent.png' },
+      { value: 0.2, count: 0, image: '../../assets/img/20_cent.png' },
+      { value: 0.1, count: 0, image: '../../assets/img/10_cent.png' },
+    ];
+    console.log('getting bills and coind needed for price: ' + this.price)
+    let remainingAmount = this.price;
+
+    for (const billCoin of billsAndCoins) {
+      while (remainingAmount >= billCoin.value) {
+        remainingAmount -= billCoin.value;
+        billCoin.count++;
+        console.log('we need ' + billCoin.count + ' of ' + billCoin.value)
+      }
+    }
+
+    return billsAndCoins.filter(coin => coin.count > 0);
+  }
   
+
 }
