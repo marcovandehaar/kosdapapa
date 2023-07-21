@@ -42,7 +42,7 @@
                             <div class="savings-remainder" [style.width.%]="100 - savingsPercentage"></div>
                           </div>                          
                         <h4>Prijs:</h4>
-                        <input type="number" [(ngModel)]="price" step="0.01" placeholder="Hoeveel kost het?" (input)="updateProgressBar()">
+                        <input type="number" [(ngModel)]="price" step="0.05" placeholder="Hoeveel kost het?" (input)="updateProgressBar()">
                         <ng-container *ngIf="price > 0">
                         <div [ngClass]="{'result-message': true, 'success': canAfford, 'failure': !canAfford}">
                             <ng-container *ngIf="canAfford; else failureMessage">
@@ -56,10 +56,10 @@
                         
                         <div id="moneyPanel" [@slideInOut]="moneyPanelState" class="money-panel">
                             <div class="money-panel-content">
-                              <span>Wow, {{ formatAmount(price) }} dat is zoveel geld:</span>
+                              <span class="moneyTitle">Wow, {{ formatAmount(price) }} dat is zoveel geld:</span>
                               <div *ngFor="let coin of getBillsAndCoinsNeeded()" class="coin-info">
                                 <img [src]="coin.image" alt="Coin Image">
-                                <span class="coin-count">{{ coin.count }} X {{ formatAmount(coin.value) }}</span>
+                                <span class="coin-count">{{ coin.count }} X {{ formatAmount(coin.value/100) }}</span>
                               </div>
                             </div>
                           </div>

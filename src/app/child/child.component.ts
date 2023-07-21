@@ -130,19 +130,20 @@ export class ChildComponent implements OnChanges {
   // Add this function to calculate the bills and coins needed for the price
   getBillsAndCoinsNeeded(): { value: number, count: number, image: string }[] {
     const billsAndCoins = [
-      { value: 50, count: 0, image: '../../assets/img/50_euro.png' },
-      { value: 20, count: 0, image: '../../assets/img/20_euro.png' },
-      { value: 10, count: 0, image: '../../assets/img/10_euro.png' },
-      { value: 5, count: 0, image: '../../assets/img/5_euro.png' },
-      { value: 2, count: 0, image: '../../assets/img/2_euro.png' },
-      { value: 1, count: 0, image: '../../assets/img/1_euro.png' },
-      { value: 0.5, count: 0, image: '../../assets/img/50_cent.png' },
-      { value: 0.2, count: 0, image: '../../assets/img/20_cent.png' },
-      { value: 0.1, count: 0, image: '../../assets/img/10_cent.png' },
+      { value: 5000, count: 0, image: '../../assets/img/50_euro.png' },
+      { value: 2000, count: 0, image: '../../assets/img/20_euro.png' },
+      { value: 1000, count: 0, image: '../../assets/img/10_euro.png' },
+      { value: 500, count: 0, image: '../../assets/img/5_euro.png' },
+      { value: 200, count: 0, image: '../../assets/img/2_euro.png' },
+      { value: 100, count: 0, image: '../../assets/img/1_euro.png' },
+      { value: 50, count: 0, image: '../../assets/img/50_cent.png' },
+      { value: 20, count: 0, image: '../../assets/img/20_cent.png' },
+      { value: 10, count: 0, image: '../../assets/img/10_cent.png' },
+      { value: 5, count: 0, image: '../../assets/img/5_cent.png' },
     ];
-    console.log('getting bills and coind needed for price: ' + this.price)
-    let remainingAmount = this.price;
-
+    
+    let remainingAmount = parseFloat((this.price*100).toFixed(0)); //workaround binary float problems...
+    console.log('getting bills and coind needed for price: ' + remainingAmount)
     for (const billCoin of billsAndCoins) {
       while (remainingAmount >= billCoin.value) {
         remainingAmount -= billCoin.value;

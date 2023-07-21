@@ -36,6 +36,7 @@
     padding: 10px;
     color: #fff;
     font-weight: bold;
+    margin-bottom: 15px;
   }
   
   .success {
@@ -78,6 +79,10 @@
      
       border: 1px solid #ccc;
       border-radius: 5px;
+      background-color: #e0ffc8;
+      border-radius: 10px;
+      padding: 10px;
+      margin-top: 10px;
       
       transition: max-height 0.3s ease-in-out;
       display: flex;
@@ -92,8 +97,8 @@
           margin: 5px;
     
           img {
-            width: 100px; /* Adjust the size as needed */
-            height: auto;
+            height: 50px; /* Adjust the size as needed */
+            width: auto;
             margin-right: 5px;
           }
     
@@ -113,6 +118,12 @@
       width: 60px; /* Increase the width to make the images larger */
       height: auto;
       margin-right: 5px;
+    }
+
+    .moneyTitle{
+      font-size: 20px;
+      color: #aa12bf;
+      
     }
     
   
