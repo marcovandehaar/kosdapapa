@@ -43,6 +43,7 @@ export class ChildComponent implements OnChanges {
   moneyPanelActive = false;
   lastModifications: string[] = [];
   referenceItems: ReferenceItem[] = [];
+  defaultProfileImage = 'https://www.icegif.com/wp-content/uploads/2022/10/icegif-1218.gif';
 
 
   constructor(private localStorageService: LocalStorageService, 
@@ -85,6 +86,10 @@ export class ChildComponent implements OnChanges {
     } else {
       this.savingsPercentage = 0;
     }
+  }
+
+  getProfileImage(): string {
+    return this.childData?.profileImage || this.defaultProfileImage;
   }
 
   addMoney(amount: number): void {
