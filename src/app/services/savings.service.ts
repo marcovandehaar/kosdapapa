@@ -25,4 +25,11 @@ export class SavingsService {
     // Check if the current savings can afford the given price
     return this.savings >= price;
   }
+
+  calculateAffordableAmount(price: number): number {
+    if (price <= 0) {
+      return 0;
+    }
+    return Math.floor(this.savings / price);
+  }
 }

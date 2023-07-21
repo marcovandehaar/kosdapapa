@@ -27,5 +27,5 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
 ## TODO
-- make piggy bank savings management work again in NG
-- make child specific styling and gif work again in NG
+- price steps of 10 ct
+- money img limit height, not width??

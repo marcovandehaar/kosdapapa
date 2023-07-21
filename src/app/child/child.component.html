@@ -52,17 +52,42 @@
                               Je kunt dit helaas niet kopen. Je hebt niet genoeg spaargeld.
                             </ng-template>
                           </div>
-                                                <button class="toggle-panel" (click)="toggleMoneyPanel()"><i class="fas fa-euro-sign"></i></button>
+                         <button class="toggle-panel" (click)="toggleMoneyPanel()"><i class="fas fa-euro-sign"></i></button>
+                         <button class="toggle-panel toy-toggle-panel" (click)="toggleToyPanel()"><i class="fas fa-basket-shopping"></i></button>
+
                         
                         <div id="moneyPanel" [@slideInOut]="moneyPanelState" class="money-panel">
                             <div class="money-panel-content">
-                              <span class="moneyTitle">Wow, {{ formatAmount(price) }} dat is zoveel geld:</span>
+                              <div class="moneyTitle">Wow, {{ formatAmount(price) }} dat is zoveel geld:</div>
                               <div *ngFor="let coin of getBillsAndCoinsNeeded()" class="coin-info">
                                 <img [src]="coin.image" alt="Coin Image">
                                 <span class="coin-count">{{ coin.count }} X {{ formatAmount(coin.value/100) }}</span>
                               </div>
                             </div>
                           </div>
+                          <div id="toyPanel" [@slideInOut]="toyPanelState" class="money-panel">
+                            <div class="money-panel-content">
+                              <!-- Add content for toy comparisons here -->
+                              <div>
+                                <div class="money-panel-content">
+                                  <div class="moneyTitle">Daarvoor kun je ook kopen:</div>
+                                  <ng-container *ngFor="let item of referenceItems | sortReferenceItemsByPrice">
+                                    <div class="toy-item">
+                                      <img [src]="item.image" alt="Reference Item Image">
+                                      <div class="toy-details">
+                                        <div class="toy-name">{{ item.name }}</div>
+                                        <div class="toy-price">{{ formatAmount(item.price) }}</div>
+                                      </div>
+                                      <div class="toy-amount">{{ calculateAffordableAmount(item.price) }} X</div>
+                                    </div>
+                                    <div class="amount-line">{{ calculateAffordableAmount(item.price) }} X</div>
+                                  </ng-container>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          
+                          
 
                           </ng-container>
                           

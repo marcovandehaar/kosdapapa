@@ -5,6 +5,8 @@ import { Child } from './child.model';
 import { LocalStorageService } from '../services/local-storage.service';
 import { SavingsService } from '../services/savings.service';
 import { trigger, state, style, animate, transition } from '@angular/animations';
+import { ReferenceItem } from './reference-item';
+
 
 
 @Component({
@@ -36,22 +38,37 @@ export class ChildComponent implements OnChanges {
   canAfford: boolean = true;
   panelState = 'out';
   moneyPanelState = 'out';
+  toyPanelState = 'out';
+  toyPanelActive = false;
+  moneyPanelActive = false;
   lastModifications: string[] = [];
+  referenceItems: ReferenceItem[] = [];
 
 
-  constructor(private localStorageService: LocalStorageService) { }
+  constructor(private localStorageService: LocalStorageService, 
+    private http: HttpClient) { }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['childData'] && changes['childData'].currentValue) {
       this.loadSavingsFromLocalStorage();
       this.updateSavingsPercentage();
       this.updateProgressBar();
+      this.loadReferenceItems();
     }
   }
 
   checkAffordability(): void {
     this.canAfford = this.savings >= this.price;
     //console.log('canafford: ' + this.canAfford);
+  }
+
+  calculateAffordableAmount(price: number): number {
+    if (price <= 0) {
+      return 0;
+    }
+    //console.log("savings:" + this.savings);
+    //console.log("price:" + price);
+    return Math.floor(this.price / price);
   }
 
   private loadSavingsFromLocalStorage(): void {
@@ -122,11 +139,27 @@ export class ChildComponent implements OnChanges {
     this.checkAffordability();
   }
 
-  // Add this function to toggle the money panel
   toggleMoneyPanel(): void {
-    this.moneyPanelState = this.moneyPanelState === 'in' ? 'out' : 'in';
+    if (this.moneyPanelActive && !this.toyPanelActive) {
+      this.moneyPanelState = this.moneyPanelState === 'in' ? 'out' : 'in';
+    } else {
+      this.moneyPanelActive = true;
+      this.toyPanelActive = false;
+      this.moneyPanelState = 'in';
+      this.toyPanelState = 'out';
+    }
   }
-
+  
+  toggleToyPanel(): void {
+    if (this.toyPanelActive && !this.moneyPanelActive) {
+      this.toyPanelState = this.toyPanelState === 'in' ? 'out' : 'in';
+    } else {
+      this.toyPanelActive = true;
+      this.moneyPanelActive = false;
+      this.toyPanelState = 'in';
+      this.moneyPanelState = 'out';
+    }
+  }
   // Add this function to calculate the bills and coins needed for the price
   getBillsAndCoinsNeeded(): { value: number, count: number, image: string }[] {
     const billsAndCoins = [
@@ -152,8 +185,18 @@ export class ChildComponent implements OnChanges {
       }
     }
 
-    return billsAndCoins.filter(coin => coin.count > 0);
+    return billsAndCoins.filter(coin => coin.count > 0);   
+  }
+
+  loadReferenceItems(): void {
+    this.http.get<ReferenceItem[]>('./assets/reference-items.json').subscribe(
+      (data) => {
+        this.referenceItems = data;
+      },
+      (error) => {
+        console.error('Error loading reference items:', error);
+      }
+    );
   }
   
-
 }

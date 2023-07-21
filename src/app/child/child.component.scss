@@ -33,11 +33,13 @@
   }
 
   .result-message {
+    font-family: 'Gill Sans', cursive, sans-serif;
+    font-size: 18px;
+    margin-top: 10px;
     padding: 10px;
-    color: #fff;
-    font-weight: bold;
-    margin-bottom: 15px;
+    border-radius: 5px;
   }
+  
   
   .success {
     background-color: #6eff91; /* Green background for success message */
@@ -45,6 +47,19 @@
   
   .failure {
     background-color: #ff6e6e; /* Red background for failure message */
+  }
+
+    
+  input[type="number"],
+  input[type="text"] {
+    font-family: 'Gill Sans', cursive, sans-serif;
+    font-size: 32px; /* Increase the font size */
+    padding: 12px; /* Increase the padding */
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
   }
 
   
@@ -64,8 +79,9 @@
       transition: background-color 0.3s;
       padding-top: 0px;
       padding-bottom: 2px;
-      padding-left: 8px;
+      padding-left: 10px;
       text-align: center;
+      margin-top: 15px;
     }
 
     .toggle-panel:hover {
@@ -76,54 +92,77 @@
       /* Add other styling you need for the money panel */
       overflow: hidden;
       margin-top: 10px;
-     
       border: 1px solid #ccc;
       border-radius: 5px;
       background-color: #e0ffc8;
       border-radius: 10px;
       padding: 10px;
       margin-top: 10px;
-      
       transition: max-height 0.3s ease-in-out;
       display: flex;
       flex-wrap: wrap;
+    }
     
-      .money-panel-content {
-        padding: 10px;
+    .money-panel-content {
+      padding: 10px;
+    }
     
-        .coin-info {
-          display: flex;
-          align-items: center;
-          margin: 5px;
+    .coin-info {
+      display: flex;
+      align-items: center;
+      margin: 5px;
+    }
     
-          img {
-            height: 50px; /* Adjust the size as needed */
-            width: auto;
-            margin-right: 5px;
-          }
+    .coin-info img {
+      height: 50px; /* Adjust the size as needed */
+      width: auto;
+      margin-right: 5px;
+    }
     
-          .coin-count {
-            font-weight: bold;
-          }
-        }
-      }
+    .coin-count {
+      font-weight: bold;
+    }
+    
+    .moneyTitle {
+      font-size: 20px;
+      color: #aa12bf;
+    }
+    
+    .toy-item {
+      display: flex;
+      align-items: center;
+      margin: 5px;
+    }
+    
+    .toy-item img {
+      width: 80px; /* Increase the width to make the images larger */
+      height: auto;
+      margin-right: 5px;
+    }
+    
+    .toy-details {
+      display: flex;
+      flex-direction: column;
+      margin-right: 10px;
+    }
+    
+    .toy-name {
+      font-weight: bold;
+    }
+    
+    .toy-price {
+      font-size: 12px;
+    }
+    
+    .toy-amount {
+      font-size: 20px;
+      font-weight: bold;
+      margin-left: auto; /* Align toy amounts to the right */
     }
     
     /* When the moneyPanel is in the 'in' state, it will slide in from the top and become visible */
     #moneyPanel.ng-trigger-in {
       max-height: 200px; /* Adjust the height as needed */
-    }
-
-    .coin-info img {
-      width: 60px; /* Increase the width to make the images larger */
-      height: auto;
-      margin-right: 5px;
-    }
-
-    .moneyTitle{
-      font-size: 20px;
-      color: #aa12bf;
-      
     }
     
   
