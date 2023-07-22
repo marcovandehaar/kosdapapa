@@ -6,9 +6,18 @@ This is a hobby project  for personal use only. This allowed me to skip importan
 
 # Features
 
-You can define 2 names for your children. Currently only 2, no more, no less. Define them in the top of the script tag as childName1 and childName2.
+You can define for who you want to show a piggybank site in the json file (/assets/children-data.json). You can define the following properties for each child:
+* name - is used for the title
+* favoriteColor - the child's favorite color, currently used for the progress bar
+* backgroundColor - currently used for the background of the piggy bank panel
+* profileImage - used to display an image in the piggy bank panel
 
-Displaying the site will give you the option to show the piggy bank of 1 of the children. Once you open one, you can check see the balance of your piggy bank and enter the price of the item you wish to buy. Clicking the 'Check' button will show you a progress bar displaying how big a part of your savings you would spend buying this item. It also displays a result test which tells you how much savings you have left after buying the item.
+Functions
+* you can see the balance of your piggy bank
+* you an edit the balance of your piggy bank in the edit panel
+* you can enter an item price and see whether you can afford the item
+* If a price is entered you can also see which bills and coins you need for the price to give you a better idea how much the item costs.
+* if a prices is entered you can also open a shop-comparison panel which lists reference items , how much they cost, and how many you can buy for the entered price. You can define the reference items in a json file (assets/reference-items.json)
 
 # Dev challenge
 
@@ -20,18 +29,10 @@ I started some new threads to see whether it would significantly change (read: i
     https://chat.openai.com/share/3fda0cc7-7210-4fff-aec7-08f2d684a93a
     https://chat.openai.com/share/4c999005-26f6-4bc6-ad57-14bf2816cf3d
     https://chat.openai.com/share/cc125b12-a4c7-40b0-90fb-5c23504e1449
+    https://chat.openai.com/share/a9c53080-09c3-4c83-832d-ec221beb7f5e 
 
 Failed:
 
     https://chat.openai.com/share/6124ee18-165a-4605-8320-84dddb42e853
         Github access and dynamic site
         CGPT was unable to access, dynamic site without framework got too complex.
-
-
-# Based on Vanilla JavaScript App
-
-[Azure Static Web Apps](https://docs.microsoft.com/azure/static-web-apps/overview) allows you to easily build JavaScript apps in minutes. Use this repo with the [quickstart](https://docs.microsoft.com/azure/static-web-apps/getting-started?tabs=vanilla-javascript) to build and customize a new static site.
-
-This repo is used as a starter for a _very basic_ HTML web application using no front-end frameworks.
-
-This repo has a dev container. This means if you open it inside a [GitHub Codespace](https://github.com/features/codespaces), or using [VS Code with the remote containers extension](https://code.visualstudio.com/docs/remote/containers), it will be opened inside a container with all the dependencies already installed.

@@ -1,0 +1,23 @@
+<main>
+  <!-- Use app-child component to display child panels -->
+  <div class="page-container">
+    <div class="childButtons">
+      <h4 class="header-text">Voor wie wil je de spaarpot zien?</h4>
+      <button *ngFor="let child of children" (click)="toggleChildSection(child)">{{ child.name }}</button>
+    </div>
+    
+    <div class="child-panels">
+      <!-- Use app-child component to display child panels -->
+      <app-child *ngFor="let child of children" [childData]="child" [hidden]="selectedChild !== child"></app-child>
+    </div>
+  </div>
+  <app-about-panel *ngIf="showAboutPanel" (closePanel)="toggleAboutPanel()"></app-about-panel>
+
+  <!-- Add the about-button here -->
+  <button #aboutButton class="about-button" (click)="toggleAboutPanel()">
+    <i class="fas fa-question-circle"></i>
+  </button>
+  
+
+  
+</main>

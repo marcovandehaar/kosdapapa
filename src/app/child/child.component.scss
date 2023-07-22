@@ -1,0 +1,239 @@
+
+
+/* child.component.scss */
+#lynnPanel {
+    /* Initially hidden with opacity 0 and shifted above its original position */
+  
+  /* Add any other styling you need for the lynnPanel here */
+  z-index: 1; /* Set a higher z-index value to ensure it appears on top of the .section */
+  position: relative; /* or position: absolute; */
+  }
+  
+  /* When the lynnPanel is in the 'in' state, it will slide in from the top and become visible */
+  #lynnPanel.ng-trigger-in {
+    transform: translateY(0);
+    
+  }
+
+  .section {
+    border-radius: 10px;
+    background-color: #ebcbff;
+    /* Add rounded corners to the section */
+    position: relative; /* Set the position to relative */
+    z-index: 0; /* Set a lower z-index value */
+  }
+
+  .editPanel {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .result-message {
+    font-family: 'Gill Sans', cursive, sans-serif;
+    font-size: 18px;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  
+  .success {
+    background-color: #6eff91; /* Green background for success message */
+  }
+  
+  .failure {
+    background-color: #ff6e6e; /* Red background for failure message */
+  }
+
+    
+  input[type="number"],
+  input[type="text"] {
+    font-family: 'Gill Sans', cursive, sans-serif;
+    font-size: 32px; /* Increase the font size */
+    padding: 12px; /* Increase the padding */
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+  }
+
+  
+    i {
+      display: block;
+    }
+    
+    .toggle-panel {
+      background-color: #FFD700;
+      color: #b97a00;;
+      font-size: 32px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      padding-top: 0px;
+      padding-bottom: 2px;
+      padding-left: 10px;
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .toggle-panel:hover {
+      background-color: #FFEC8B;
+    }
+
+    .money-panel {
+      /* Add other styling you need for the money panel */
+      overflow: hidden;
+      margin-top: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #e0ffc8;
+      border-radius: 10px;
+      padding: 10px;
+      margin-top: 10px;
+      transition: max-height 0.3s ease-in-out;
+      display: flex;
+      flex-wrap: wrap;
+    }
+    
+    .money-panel-content {
+      padding: 10px;
+    }
+    
+    .coin-info {
+      display: flex;
+      align-items: center;
+      margin: 5px;
+    }
+    
+    .coin-info img {
+      height: 50px; /* Adjust the size as needed */
+      width: auto;
+      margin-right: 5px;
+    }
+    
+    .coin-count {
+      font-weight: bold;
+    }
+    
+    .moneyTitle {
+      font-size: 20px;
+      color: #aa12bf;
+    }
+    
+    .toy-item {
+      display: flex;
+      align-items: center;
+      margin: 5px;
+    }
+    
+    .toy-item img {
+      width: 80px; /* Increase the width to make the images larger */
+      height: auto;
+      margin-right: 5px;
+    }
+    
+    .toy-details {
+      display: flex;
+      flex-direction: column;
+      margin-right: 10px;
+    }
+    
+    .toy-name {
+      font-weight: bold;
+    }
+    
+    .toy-price {
+      font-size: 12px;
+    }
+    
+    .toy-amount {
+      font-size: 20px;
+      font-weight: bold;
+      margin-left: auto; /* Align toy amounts to the right */
+      color: #ff0083;
+    }
+    
+    /* When the moneyPanel is in the 'in' state, it will slide in from the top and become visible */
+    #moneyPanel.ng-trigger-in {
+      max-height: 200px; /* Adjust the height as needed */
+    }
+    
+    .header {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: calc(50vh - 4rem);
+    }
+    
+    .title-wrapper {
+      display: grid;
+      align-items: center;
+      justify-content: center;
+      transform: skew(0, -10deg);
+    }
+    
+    .top-title {
+      order: 1;
+      text-align: center;
+      display: block;
+      color: #fff;
+      font-size: clamp(1rem, 4vw, 1.5rem);
+      margin-bottom: 1rem;
+      padding-right: 2rem;
+    }
+    
+    .bottom-title {
+      order: 3;
+      text-align: center;
+      display: block;
+      color: #fff;
+      font-size: clamp(1rem, 4vw, 1.5rem);
+      margin-top: 2rem;
+      padding-left: 2rem;
+    }
+    
+    .sweet-title {
+      order: 2;
+      color: #fde9ff;
+      font-weight: 900;
+      text-transform: uppercase;
+      font-size: clamp(3rem, 10vw, 6rem);
+      line-height: 0.75em;
+      text-align: center;
+      text-shadow: 3px 1px 1px #4af7ff, 2px 2px 1px #165bfb, 4px 2px 1px #4af7ff,
+        3px 3px 1px #165bfb, 5px 3px 1px #4af7ff, 4px 4px 1px #165bfb,
+        6px 4px 1px #4af7ff, 5px 5px 1px #165bfb, 7px 5px 1px #4af7ff,
+        6px 6px 1px #165bfb, 8px 6px 1px #4af7ff, 7px 7px 1px #165bfb,
+        9px 7px 1px #4af7ff;
+    
+      span {
+        display: block;
+        position: relative;
+    
+        &:before {
+          content: attr(title);
+          position: absolute;
+          text-shadow: 2px 2px 1px #e94aa1, -1px -1px 1px #c736f9,
+            -2px 2px 1px #e94aa1, 1px -1px 1px #f736f9;
+          z-index: 1;
+        }
+    
+        &:nth-child(1) {
+          padding-right: 2.25rem;
+        }
+    
+        &:nth-child(2) {
+          padding-left: 2.25rem;
+        }
+      }
+    }
+    
+  
+  

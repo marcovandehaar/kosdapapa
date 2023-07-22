@@ -1,0 +1,36 @@
+.about-panel {
+    position: absolute;
+    bottom: 100px;
+    right: 10px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    animation: fadeInOut 0.3s ease-in-out;
+    position: absolute;
+    z-index: 1; /* Make sure it's above other content */
+  }
+
+  .about-panel.above-button {
+    right: 10px;
+  }
+  
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  @keyframes fadeInOut {
+    0% {
+      opacity: 0;
+      transform: translate(-10px, -10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
+  }
+  

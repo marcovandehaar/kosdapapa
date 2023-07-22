@@ -1,0 +1,105 @@
+    <div class="section" [style.background-color]="childData?.backgroundColor">
+      <section class="header">
+        <div class="title-wrapper">
+          <h1 class="sweet-title">
+            <span title="{{ childData?.name }}'s">{{ childData?.name }}'s</span>
+            <span title="Spaarpot">Spaarpot</span>
+          </h1>
+          </div>
+      </section>  
+        <div class="container">
+            <div class="row savingsdetail">
+                <div class="col-md-6">
+                    <main>
+                        <div class="savings-info">
+                            <h4 [style.color]="getForegroundTextColor(childData?.backgroundColor)">Spaargeld:</h4>
+                            <input type="text" [value]="formatAmount(savings)" [style.color]="getForegroundTextColor(childData?.backgroundColor)" readonly>
+                            <button id="toggleLynnPanel" class="toggle-panel" title="Geld in of uit je spaarpot doen" (click)="togglePanel()"><i
+                                    class="fas fa-piggy-bank"></i></button>
+
+                        </div>
+                        <div id="lynnPanel" [@slideInOut]="panelState" class="editPanel">
+                            <input type="number" [(ngModel)]="savings" id="lynnEditSavings" [style.color]="getForegroundTextColor(childData?.backgroundColor)" step="0.05" (ngModelChange)="updateLocalStorageSavings()">
+                            <div class="buttons-row">
+                                <div class="buttons-row-item">
+                                    <button class="lynn-mutation-button addButton" (click)="addMoney(0.50)">+€0.50</button>
+                                    <button class="lynn-mutation-button addButton" (click)="addMoney(1.00)">+€1.00</button>
+                                    <button class="lynn-mutation-button addButton" (click)="addMoney(5.00)">+€5.00</button>
+                                    <button class="lynn-mutation-button addButton" (click)="addMoney(10.00)">+€10.00</button>
+                                </div>
+                                <div class="buttons-row-item">
+                                    <button class="lynn-mutation-button substractButton"
+                                        (click)="addMoney(-0.50)">-€0.50</button>
+                                    <button class="lynn-mutation-button substractButton"
+                                        (click)="addMoney(-1.00)">-€1.00</button>
+                                    <button class="lynn-mutation-button substractButton"
+                                        (click)="addMoney(-5.00)">-€5.00</button>
+                                    <button class="lynn-mutation-button substractButton"
+                                        (click)="addMoney(-10.00)">-€10.00</button>
+                                </div>
+                                <div class="feedback-panel" class="mutationFeedback">
+                                    <p *ngFor="let modification of lastModifications" [style.color]="getForegroundTextColor(childData?.backgroundColor)" >{{ modification }}</p>
+                                  </div>
+                            </div>
+                        </div>
+                        <div class="savings-bar" id="lynnSavingsBar" style="background-color: blue;">
+                            <div class="savings-fill" [style.background-color]="getForegroundTextColor(childData?.backgroundColor)" [style.width.%]="savingsPercentage"></div>
+                            <div class="savings-remainder" [style.width.%]="100 - savingsPercentage"></div>
+                          </div>                          
+                        <h4>Prijs:</h4>
+                        <input type="number" [style.color]="getForegroundTextColor(childData?.backgroundColor)" [(ngModel)]="price" step="0.05" placeholder="Hoeveel kost het?" (input)="updateProgressBar()">
+                        <ng-container *ngIf="price > 0">
+                        <div [ngClass]="{'result-message': true, 'success': canAfford, 'failure': !canAfford}">
+                            <ng-container *ngIf="canAfford; else failureMessage">
+                              Je kunt dit kopen! Dan heb je nog €{{ (savings - price).toFixed(2) }} over in je spaarpot.
+                            </ng-container>
+                            <ng-template #failureMessage>
+                              Je kunt dit helaas niet kopen. Je hebt niet genoeg spaargeld.
+                            </ng-template>
+                          </div>
+                         <button class="toggle-panel" (click)="toggleMoneyPanel()"><i class="fas fa-euro-sign"></i></button>
+                         <button class="toggle-panel toy-toggle-panel" (click)="toggleToyPanel()"><i class="fas fa-basket-shopping"></i></button>
+
+                        
+                        <div id="moneyPanel" [@slideInOut]="moneyPanelState" class="money-panel">
+                            <div class="money-panel-content">
+                              <div class="moneyTitle">Wow, {{ formatAmount(price) }} dat is zoveel geld:</div>
+                              <div *ngFor="let coin of getBillsAndCoinsNeeded()" class="coin-info">
+                                <img [src]="coin.image" alt="Coin Image">
+                                <span class="coin-count">{{ coin.count }} X {{ formatAmount(coin.value/100) }}</span>
+                              </div>
+                            </div>
+                          </div>
+                          <div id="toyPanel" [@slideInOut]="toyPanelState" class="money-panel">
+                            <div class="money-panel-content">
+                              <!-- Add content for toy comparisons here -->
+                              <div>
+                                <div class="money-panel-content">
+                                  <div class="moneyTitle">Daarvoor kun je ook kopen:</div>
+                                  <ng-container *ngFor="let item of referenceItems | sortReferenceItemsByPrice">
+                                    <div class="toy-item">
+                                      <img [src]="item.image" alt="Reference Item Image">
+                                      <div class="toy-details">
+                                        <div class="toy-name">{{ item.name }}</div>
+                                        <div class="toy-price">{{ formatAmount(item.price) }}</div>
+                                      </div>
+                                      <div class="toy-amount">{{ calculateAffordableAmount(item.price) }} X</div>
+                                    </div>
+                                  </ng-container>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          
+                          
+
+                          </ng-container>
+                          
+                    </main>
+                </div>
+                <div class="col-md-6">
+                  <img [src]="childData?.profileImage" alt="{{ childData?.name }}'s GIF" style="width: 100%;">
+              </div>
+            </div>
+        </div>
+    </div>

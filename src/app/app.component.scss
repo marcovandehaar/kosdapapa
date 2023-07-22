@@ -1,0 +1,50 @@
+.childButtons{
+    background-color: #caf2fc;
+    /* Update the background color of the header with a light color */
+    padding: 10px;
+    text-align: center;
+    border-radius: 10px;
+    /* Add rounded corners to the top of the header */
+}
+.page-container {
+    max-height: calc(100vh - 50px); /* Adjust the height as needed; 50px is an example height for the header */
+    overflow-y: auto;
+  }
+  
+  .child-panels {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .about-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: transparent;
+    border: none;
+    font-size: 24px;
+    color: #444;
+    cursor: pointer;
+    z-index: 999; /* Ensure the button stays on top of other elements */
+  }
+  
+  .about-panel {
+    position: fixed;
+    bottom: 60px;
+    right: 20px;
+    background-color: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #222;
+    font-size: 16px;
+    font-weight: bold;
+    opacity: 0.9;
+    transform: translateY(100%);
+    transition: transform 0.3s;
+  }
+  
