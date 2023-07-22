@@ -1,6 +1,7 @@
     <div class="section" [style.background-color]="childData?.backgroundColor">
         <div>
-            <h2>{{ childData?.name }}'s Spaarpot</h2>
+          <h2  [style.color]="getForegroundTextColor(childData?.backgroundColor)">
+              {{ childData?.name }}'s Spaarpot</h2>
         </div>
         <div class="container">
             <div class="row savingsdetail">
@@ -14,7 +15,7 @@
 
                         </div>
                         <div id="lynnPanel" [@slideInOut]="panelState" class="editPanel">
-                            <input type="number" [(ngModel)]="savings" id="lynnEditSavings" step="0.01" >
+                            <input type="number" [(ngModel)]="savings" id="lynnEditSavings" step="0.05" (ngModelChange)="updateLocalStorageSavings()">
                             <div class="buttons-row">
                                 <div class="buttons-row-item">
                                     <button class="lynn-mutation-button addButton" (click)="addMoney(0.50)">+€0.50</button>

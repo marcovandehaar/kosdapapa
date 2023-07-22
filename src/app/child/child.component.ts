@@ -6,6 +6,7 @@ import { LocalStorageService } from '../services/local-storage.service';
 import { SavingsService } from '../services/savings.service';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { ReferenceItem } from './reference-item';
+import tinycolor from 'tinycolor2';
 
 
 
@@ -44,6 +45,7 @@ export class ChildComponent implements OnChanges {
   lastModifications: string[] = [];
   referenceItems: ReferenceItem[] = [];
   defaultProfileImage = 'https://www.icegif.com/wp-content/uploads/2022/10/icegif-1218.gif';
+  defaultColor = "#222";
 
 
   constructor(private localStorageService: LocalStorageService, 
@@ -112,7 +114,7 @@ export class ChildComponent implements OnChanges {
     }
   }
 
-  private updateLocalStorageSavings(): void {
+  updateLocalStorageSavings(): void {
     if (this.childData && this.childData.name) {
       this.localStorageService.save(this.childData.name + 'Savings', this.savings.toFixed(2));
     }
@@ -202,6 +204,18 @@ export class ChildComponent implements OnChanges {
         console.error('Error loading reference items:', error);
       }
     );
+  }
+
+  getForegroundTextColor(backgroundColor: string | undefined): string {
+    if (!backgroundColor) {
+      return '#222'; // Return default color when backgroundColor is undefined
+    }
+  
+    // Use tinycolor library to calculate foreground text color based on the background color
+    let newcolor = tinycolor(backgroundColor).darken(40).toString();
+    console.log("transforming background color:" + backgroundColor + " to " + " foregroundcolor: " + newcolor)
+    return  newcolor;
+
   }
   
 }

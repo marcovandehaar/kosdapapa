@@ -1,9 +1,14 @@
 <main>
-  <header>
-    <h4 class="header-text">Voor wie wil je de spaarpot zien?</h4>
-    <button *ngFor="let child of children" (click)="toggleChildSection(child)">{{ child.name }}</button>
-  </header>
-
   <!-- Use app-child component to display child panels -->
-  <app-child *ngFor="let child of children" [childData]="child" [hidden]="selectedChild !== child"></app-child>
+  <div class="page-container">
+    <div class="childButtons">
+      <h4 class="header-text">Voor wie wil je de spaarpot zien?</h4>
+      <button *ngFor="let child of children" (click)="toggleChildSection(child)">{{ child.name }}</button>
+    </div>
+    
+    <div class="child-panels">
+      <!-- Use app-child component to display child panels -->
+      <app-child *ngFor="let child of children" [childData]="child" [hidden]="selectedChild !== child"></app-child>
+    </div>
+  </div>
 </main>

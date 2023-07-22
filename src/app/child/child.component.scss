@@ -1,8 +1,4 @@
-.section {
-    border-radius: 10px;
-    background-color: #ebcbff;
-    /* Add rounded corners to the section */
-  }
+
 
 /* child.component.scss */
 #lynnPanel {
@@ -158,6 +154,7 @@
       font-size: 20px;
       font-weight: bold;
       margin-left: auto; /* Align toy amounts to the right */
+      color: #ff0083;
     }
     
     /* When the moneyPanel is in the 'in' state, it will slide in from the top and become visible */
