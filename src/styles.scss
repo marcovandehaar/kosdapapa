@@ -34,17 +34,6 @@ body {
     /* Light shade of blue for Evi */
   }
   
-
-  
-  
-  header {
-    background-color: #caf2fc;
-    /* Update the background color of the header with a light color */
-    padding: 10px;
-    text-align: center;
-    border-radius: 10px;
-    /* Add rounded corners to the top of the header */
-  }
   
   button {
     font-family: 'Gill Sans', cursive, sans-serif;
@@ -147,16 +136,6 @@ body {
     color: #ffffff;
   }
   
-  #lynnSection .savings-fill {
-    background-color: #ff0000;
-    /* Bright, vibrant red for Lynn */
-  }
-  
-  #eviSection .savings-fill {
-    background-color: #0000ff;
-    /* Cute shade of bright blue for Evi */
-  }
-  
   .savings-bar {
     display: flex;
     height: 50px;
@@ -170,7 +149,6 @@ body {
   
   .savings-fill {
     height: 100%;
-    background-color: #1f78b4;
     /* Adjust the color as desired */
     transition: width 0.3s ease-in-out;
   }

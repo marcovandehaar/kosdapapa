@@ -1,31 +1,38 @@
-# Kosdapapa
+# Intro 
+Kosdapapa is a test project in which I have ChatGPT create a piggy bank site for my daughters in which they can check whether they can buy something
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.6.
+# Disclaimer
+This is a hobby project  for personal use only. This allowed me to skip important aspects like authorization and proper handling and sharing of personal "financial data". Feel free to use this in any way you see fit, but please realize that I made conscious choices about not implementing these important aspects so I could keep the complexity low. You should make your own choices concerning aspects like authorization, security, proper usage of personal data etc., matching your own goals and context.
 
-## Development server
+# Features
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+You can define for who you want to show a piggybank site in the json file (/assets/children-data.json). You can define the following properties for each child:
+* name - is used for the title
+* favoriteColor - the child's favorite color, currently used for the progress bar
+* backgroundColor - currently used for the background of the piggy bank panel
+* profileImage - used to display an image in the piggy bank panel
 
-## Code scaffolding
+Functions
+* you can see the balance of your piggy bank
+* you an edit the balance of your piggy bank in the edit panel
+* you can enter an item price and see whether you can afford the item
+* If a price is entered you can also see which bills and coins you need for the price to give you a better idea how much the item costs.
+* if a prices is entered you can also open a shop-comparison panel which lists reference items , how much they cost, and how many you can buy for the entered price. You can define the reference items in a json file (assets/reference-items.json)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+# Dev challenge
 
-## Build
+I tried to get as much coding done by ChatGPT as possible. So just by trying to tell it what I wanted, what results I got, how I wanted it to look. Eventually, I needed quite some manual fixing...
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+I started some new threads to see whether it would significantly change (read: improve) my responses :) See ChatGPT threads:
 
-## Running unit tests
+    https://chat.openai.com/share/6c12e654-44b4-4734-859e-6759f7276f17
+    https://chat.openai.com/share/3fda0cc7-7210-4fff-aec7-08f2d684a93a
+    https://chat.openai.com/share/4c999005-26f6-4bc6-ad57-14bf2816cf3d
+    https://chat.openai.com/share/cc125b12-a4c7-40b0-90fb-5c23504e1449
+    https://chat.openai.com/share/a9c53080-09c3-4c83-832d-ec221beb7f5e 
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Failed:
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
-
-## TODO
-- price steps of 10 ct
-- money img limit height, not width??
+    https://chat.openai.com/share/6124ee18-165a-4605-8320-84dddb42e853
+        Github access and dynamic site
+        CGPT was unable to access, dynamic site without framework got too complex.

@@ -1,5 +1,5 @@
 // app.component.ts
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Child } from './child/child.model';
 
@@ -11,6 +11,11 @@ import { Child } from './child/child.model';
 export class AppComponent implements OnInit {
   children: Child[] = [];
   selectedChild: Child | null = null;
+  showAboutPanel = false;
+  @ViewChild('aboutButton', { static: false, read: ElementRef })
+  aboutButtonRef!: ElementRef;
+  aboutPanelTop: string | undefined;
+  aboutPanelLeft: string | undefined;
 
   constructor(private http: HttpClient) { }
 
@@ -25,6 +30,19 @@ export class AppComponent implements OnInit {
       this.selectedChild = null;
     } else {
       this.selectedChild = child;
+    }
+  }
+
+  toggleAboutPanel() {
+    this.showAboutPanel = !this.showAboutPanel;
+  
+    if (this.showAboutPanel) {
+      // Calculate the position of the about button
+      const aboutButtonRect = this.aboutButtonRef.nativeElement.getBoundingClientRect();
+  
+      // Set the position of the about-panel
+      this.aboutPanelLeft = aboutButtonRect.left + 'px';
+      this.aboutPanelTop = aboutButtonRect.top - 10 + 'px'; // You can adjust the value here to control the vertical position
     }
   }
 }
