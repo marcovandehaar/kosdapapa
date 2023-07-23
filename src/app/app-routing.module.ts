@@ -7,8 +7,7 @@ const routes: Routes = [
   { path: 'child/:childName', component: ChildComponent },
   // Add any other routes if needed
   // ...
-  // Define a default route (if no child name is provided)
-  { path: '**', redirectTo: '/child/Lynn', pathMatch: 'full' }
+  
 ];
 
 @NgModule({
