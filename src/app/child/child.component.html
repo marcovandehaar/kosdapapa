@@ -46,9 +46,9 @@
                             <div class="savings-fill" [style.background-color]="getForegroundTextColor(childData?.backgroundColor)" [style.width.%]="savingsPercentage"></div>
                             <div class="savings-remainder" [style.width.%]="100 - savingsPercentage"></div>
                           </div>                          
-                        <h4>Prijs:</h4>
+                        <h4 [style.color]="getForegroundTextColor(childData?.backgroundColor)">Hoeveel kost het?</h4>
                         <input type="number" [style.color]="getForegroundTextColor(childData?.backgroundColor)" [(ngModel)]="price" step="0.05" placeholder="Hoeveel kost het?" (input)="updateProgressBar()">
-                        <ng-container *ngIf="price > 0">
+                        
                         <div [ngClass]="{'result-message': true, 'success': canAfford, 'failure': !canAfford}">
                             <ng-container *ngIf="canAfford; else failureMessage">
                               Je kunt dit kopen! Dan heb je nog €{{ (savings - price).toFixed(2) }} over in je spaarpot.
@@ -57,8 +57,8 @@
                               Je kunt dit helaas niet kopen. Je hebt niet genoeg spaargeld.
                             </ng-template>
                           </div>
-                         <button class="toggle-panel" (click)="toggleMoneyPanel()"><i class="fas fa-euro-sign"></i></button>
-                         <button class="toggle-panel toy-toggle-panel" (click)="toggleToyPanel()"><i class="fas fa-basket-shopping"></i></button>
+                         <button class="toggle-panel" (click)="toggleMoneyPanel()" [disabled]="!price"><i class="fas fa-euro-sign" ></i></button>
+                         <button class="toggle-panel toy-toggle-panel" (click)="toggleToyPanel()" [disabled]="!price"><i class="fas fa-basket-shopping"></i></button>
 
                         
                         <div id="moneyPanel" [@slideInOut]="moneyPanelState" class="money-panel">
@@ -75,7 +75,7 @@
                               <!-- Add content for toy comparisons here -->
                               <div>
                                 <div class="money-panel-content">
-                                  <div class="moneyTitle">Daarvoor kun je ook kopen:</div>
+                                  <div class="moneyTitle">Voor {{formatAmount(price)}} kun je ook kopen:</div>
                                   <ng-container *ngFor="let item of referenceItems | sortReferenceItemsByPrice">
                                     <div class="toy-item">
                                       <img [src]="item.image" alt="Reference Item Image">
@@ -91,9 +91,7 @@
                             </div>
                           </div>
                           
-                          
-
-                          </ng-container>
+                        
                           
                     </main>
                 </div>

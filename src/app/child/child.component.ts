@@ -144,29 +144,34 @@ export class ChildComponent implements OnChanges {
       this.savingsPercentage = 0;
     }
     this.checkAffordability();
+    if (this.price === 0) {
+      this.toggleMoneyPanel('out');
+      this.toggleToyPanel('out');
+    } 
   }
 
-  toggleMoneyPanel(): void {
-    if (this.moneyPanelActive && !this.toyPanelActive) {
-      this.moneyPanelState = this.moneyPanelState === 'in' ? 'out' : 'in';
+  toggleMoneyPanel(newState?: 'in' | 'out'): void {
+    if (newState) {
+      this.moneyPanelState = newState;
+      this.toyPanelState = 'out'; // Collapse the toy panel when setting the money panel state
     } else {
-      this.moneyPanelActive = true;
-      this.toyPanelActive = false;
-      this.moneyPanelState = 'in';
-      this.toyPanelState = 'out';
+      this.moneyPanelState = this.moneyPanelState === 'in' ? 'out' : 'in';
     }
+    this.moneyPanelActive = this.moneyPanelState === 'in';
+    this.toyPanelActive = false;
   }
   
-  toggleToyPanel(): void {
-    if (this.toyPanelActive && !this.moneyPanelActive) {
-      this.toyPanelState = this.toyPanelState === 'in' ? 'out' : 'in';
+  toggleToyPanel(newState?: 'in' | 'out'): void {
+    if (newState) {
+      this.toyPanelState = newState;
+      this.moneyPanelState = 'out'; // Collapse the money panel when setting the toy panel state
     } else {
-      this.toyPanelActive = true;
-      this.moneyPanelActive = false;
-      this.toyPanelState = 'in';
-      this.moneyPanelState = 'out';
+      this.toyPanelState = this.toyPanelState === 'in' ? 'out' : 'in';
     }
+    this.toyPanelActive = this.toyPanelState === 'in';
+    this.moneyPanelActive = false;
   }
+
   // Add this function to calculate the bills and coins needed for the price
   getBillsAndCoinsNeeded(): { value: number, count: number, image: string }[] {
     const billsAndCoins = [
@@ -212,10 +217,17 @@ export class ChildComponent implements OnChanges {
     }
   
     // Use tinycolor library to calculate foreground text color based on the background color
-    let newcolor = tinycolor(backgroundColor).darken(40).toString();
-    console.log("transforming background color:" + backgroundColor + " to " + " foregroundcolor: " + newcolor)
-    return  newcolor;
-
+    const backgroundIsDark = tinycolor(backgroundColor).getBrightness() < 128;
+  
+    // Define a brightness difference value to adjust the foreground color
+    const brightnessDifference = 40;
+  
+    // If background is dark, lighten the foreground color; otherwise, darken it
+    const newColor = backgroundIsDark
+      ? tinycolor(backgroundColor).lighten(brightnessDifference).toString()
+      : tinycolor(backgroundColor).darken(brightnessDifference).toString();
+  
+    return newColor;
   }
   
 }
