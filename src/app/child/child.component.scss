@@ -148,6 +148,7 @@
     
     .toy-price {
       font-size: 12px;
+      text-align: left; /* Align the toy price to the left */
     }
     
     .toy-amount {
@@ -233,6 +234,20 @@
           padding-left: 2.25rem;
         }
       }
+
+      
+    }
+
+    button[disabled] {
+      opacity: 0.5; /* Reduce opacity to indicate the button is disabled */
+      pointer-events: none; /* Disable pointer events on the button, preventing click */
+      cursor: not-allowed; /* Show the not-allowed cursor on disabled buttons */
+      background-color: #ccc; /* Set the background color to grey when disabled */
+      color: #555; /* Set the text color to a darker grey */
+    }
+
+    button[disabled]:hover {
+      background-color: #ccc; /* Disable hover effect when the button is disabled */
     }
     
   

@@ -24,6 +24,11 @@
         "name": "Unicorn verrassing lolly",
         "price": 1.99,
         "image": "../../assets/img/ref_item_5_unicornlolly.jpg"
-      }
+      },
+      {
+          "name": "Plakhand",
+          "price": 1.69,
+          "image": "../../assets/img/ref_item_6_plakhand.png"
+        }
   ]
   
