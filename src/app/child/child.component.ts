@@ -40,8 +40,6 @@ export class ChildComponent implements OnChanges {
   panelState = 'out';
   moneyPanelState = 'out';
   toyPanelState = 'out';
-  toyPanelActive = false;
-  moneyPanelActive = false;
   lastModifications: string[] = [];
   referenceItems: ReferenceItem[] = [];
   defaultProfileImage = 'https://www.icegif.com/wp-content/uploads/2022/10/icegif-1218.gif';
@@ -156,9 +154,8 @@ export class ChildComponent implements OnChanges {
       this.toyPanelState = 'out'; // Collapse the toy panel when setting the money panel state
     } else {
       this.moneyPanelState = this.moneyPanelState === 'in' ? 'out' : 'in';
+      this.toyPanelState = 'out'; 
     }
-    this.moneyPanelActive = this.moneyPanelState === 'in';
-    this.toyPanelActive = false;
   }
   
   toggleToyPanel(newState?: 'in' | 'out'): void {
@@ -167,9 +164,8 @@ export class ChildComponent implements OnChanges {
       this.moneyPanelState = 'out'; // Collapse the money panel when setting the toy panel state
     } else {
       this.toyPanelState = this.toyPanelState === 'in' ? 'out' : 'in';
+      this.moneyPanelState = 'out';
     }
-    this.toyPanelActive = this.toyPanelState === 'in';
-    this.moneyPanelActive = false;
   }
 
   // Add this function to calculate the bills and coins needed for the price
