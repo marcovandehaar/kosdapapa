@@ -45,7 +45,15 @@
                         <div class="savings-bar" id="lynnSavingsBar" style="background-color: blue;">
                             <div class="savings-fill" [style.background-color]="getForegroundTextColor(childData?.backgroundColor)" [style.width.%]="savingsPercentage"></div>
                             <div class="savings-remainder" [style.width.%]="100 - savingsPercentage"></div>
-                          </div>                          
+                          </div>  
+                          <div class="price-and-savings-container">
+                          <div class="entered-price" [style.color]="getForegroundTextColor(childData?.backgroundColor)">
+                            {{ formatAmount(price) }}
+                          </div>
+                          <div class="remaining-savings">
+                            {{ formatAmount(getRemainingSavings()) }}
+                          </div>   
+                        </div>                     
                         <h4 [style.color]="getForegroundTextColor(childData?.backgroundColor)">Hoeveel kost het?</h4>
                         <input type="number" [style.color]="getForegroundTextColor(childData?.backgroundColor)" [(ngModel)]="price" step="0.05" placeholder="Hoeveel kost het?" (input)="updateProgressBar()">
                         

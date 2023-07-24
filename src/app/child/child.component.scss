@@ -249,6 +249,29 @@
     button[disabled]:hover {
       background-color: #ccc; /* Disable hover effect when the button is disabled */
     }
+
+    .entered-price, .remaining-savings {
+      font-family: 'Gill Sans', cursive, sans-serif;
+      font-size: 16px;
+      margin-top: 5px;
+      
+    }
+    
+    .entered-price {
+      float: left; /* Align to the left */
+    }
+    
+    .remaining-savings {
+      float: right; /* Align to the right */
+      color: #00b30b;
+      
+    }
+
+    .price-and-savings-container {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 5px;
+    }
     
   
   

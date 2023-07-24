@@ -137,7 +137,7 @@ export class ChildComponent implements OnChanges {
   updateProgressBar(): void {
     //console.log('updating progress bar...');
     if (this.price > 0 && this.savings > 0) {
-      this.savingsPercentage = (this.price / this.savings) * 100;
+      this.savingsPercentage = Math.min((this.price / this.savings) * 100, 100);
     } else {
       this.savingsPercentage = 0;
     }
@@ -146,6 +146,11 @@ export class ChildComponent implements OnChanges {
       this.toggleMoneyPanel('out');
       this.toggleToyPanel('out');
     } 
+  }
+
+  getRemainingSavings(): number {
+    // Calculate the remaining savings, ensuring it doesn't go below 0 or above the total savings
+    return Math.max(this.savings - this.price, 0);
   }
 
   toggleMoneyPanel(newState?: 'in' | 'out'): void {
@@ -225,5 +230,6 @@ export class ChildComponent implements OnChanges {
   
     return newColor;
   }
-  
+
+ 
 }
