@@ -48,7 +48,7 @@
                           </div>  
                           <div class="price-and-savings-container">
                           <div class="entered-price" [style.color]="getForegroundTextColor(childData?.backgroundColor)">
-                            {{ formatAmount(price) }}
+                            {{ formatAmount(getMaxedPrice()) }}
                           </div>
                           <div class="remaining-savings">
                             {{ formatAmount(getRemainingSavings()) }}

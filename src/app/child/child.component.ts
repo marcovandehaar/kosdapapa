@@ -153,6 +153,11 @@ export class ChildComponent implements OnChanges {
     return Math.max(this.savings - this.price, 0);
   }
 
+  getMaxedPrice(): number {
+    // Calculate the remaining savings, ensuring it doesn't go below 0 or above the total savings
+    return Math.min(this.price, this.savings);
+  }
+
   toggleMoneyPanel(newState?: 'in' | 'out'): void {
     if (newState) {
       this.moneyPanelState = newState;
