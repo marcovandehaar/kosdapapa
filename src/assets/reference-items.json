@@ -1,6 +1,6 @@
 [
     {
-      "name": "LOL Surprise! Bal",
+      "name": "LOL Surprise! Ball",
       "price": 14,
       "image": "../../assets/img/ref_item_1_lolbal.jpg"
     },
@@ -15,13 +15,13 @@
       "image": "../../assets/img/ref_item_3_iphone.jpg"
     },
     {
-        "name": "Pokemon kaarten",
+        "name": "Pokemon cards",
         "price": 4.65,
         "image": "../../assets/img/ref_item_4_pokemon.jpg"
       }
       ,
     {
-        "name": "Unicorn verrassing lolly",
+        "name": "Unicorn surprise lollypop",
         "price": 1.99,
         "image": "../../assets/img/ref_item_5_unicornlolly.jpg"
       },
