@@ -43,7 +43,7 @@
                             </div>
                         </div>
                         <div class="savings-bar" id="lynnSavingsBar" style="background-color: blue;">
-                            <div class="savings-fill" [style.background-color]="getForegroundTextColor(childData?.backgroundColor)" [style.width.%]="savingsPercentage"></div>
+                            <div class="savings-fill" [style.background-color]="childData?.favoriteColor" [style.width.%]="savingsPercentage"></div>
                             <div class="savings-remainder" [style.width.%]="100 - savingsPercentage"></div>
                           </div>  
                           <div class="price-and-savings-container">
