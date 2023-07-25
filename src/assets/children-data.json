@@ -1,15 +1,21 @@
 [
     {
-      "name": "Lynn",
+      "name": "John",
       "favoriteColor": "#ff0000",
       "backgroundColor": "#fadede",
-      "profileImage": "https://media.tenor.com/Lmn8CF4LctoAAAAC/super-mario-odyssey-mario.gif"
+      "profileImage": "https://media.giphy.com/media/nYQXVoOOQX4VCJx99u/giphy.gif"
     },
     {
-      "name": "Evi",
+      "name": "Jane",
       "favoriteColor": "#0051ff",
       "backgroundColor": "#e6f5ff",
-      "profileImage": "https://media.tenor.com/3ugfpIYLTdsAAAAC/hi-hello.gif"
+      "profileImage": "https://media.giphy.com/media/BTxVOLb3eG06mO6Egi/giphy.gif"
+    },    
+    {
+      "name": "Ali",
+      "favoriteColor": "#ff9900",
+      "backgroundColor": "#d1ffdd",
+      "profileImage": "https://media.giphy.com/media/GQp6sLO8QClljgBdO0/giphy.gif"
     }
   ]
   

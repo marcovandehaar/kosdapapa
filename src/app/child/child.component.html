@@ -3,7 +3,7 @@
         <div class="title-wrapper">
           <h1 class="sweet-title">
             <span title="{{ childData?.name }}'s">{{ childData?.name }}'s</span>
-            <span title="Spaarpot">Spaarpot</span>
+            <span title="Spaarpot">Piggy Bank</span>
           </h1>
           </div>
       </section>  
@@ -12,9 +12,9 @@
                 <div class="col-md-6">
                     <main>
                         <div class="savings-info">
-                            <h4 [style.color]="getForegroundTextColor(childData?.backgroundColor)">Spaargeld:</h4>
+                            <h4 [style.color]="getForegroundTextColor(childData?.backgroundColor)">Savings:</h4>
                             <input type="text" [value]="formatAmount(savings)" [style.color]="getForegroundTextColor(childData?.backgroundColor)" readonly>
-                            <button id="toggleLynnPanel" class="toggle-panel" title="Geld in of uit je spaarpot doen" (click)="togglePanel()"><i
+                            <button id="toggleLynnPanel" class="toggle-panel" title="Put money in your piggybank or take some out!" (click)="togglePanel()"><i
                                     class="fas fa-piggy-bank"></i></button>
 
                         </div>
@@ -54,15 +54,15 @@
                             {{ formatAmount(getRemainingSavings()) }}
                           </div>   
                         </div>                     
-                        <h4 [style.color]="getForegroundTextColor(childData?.backgroundColor)">Hoeveel kost het?</h4>
+                        <h4 [style.color]="getForegroundTextColor(childData?.backgroundColor)">How much does it cost?</h4>
                         <input type="number" [style.color]="getForegroundTextColor(childData?.backgroundColor)" [(ngModel)]="price" step="0.05" placeholder="Hoeveel kost het?" (input)="updateProgressBar()">
                         
                         <div [ngClass]="{'result-message': true, 'success': canAfford, 'failure': !canAfford}">
                             <ng-container *ngIf="canAfford; else failureMessage">
-                              Je kunt dit kopen! Dan heb je nog €{{ (savings - price).toFixed(2) }} over in je spaarpot.
+                              You can buy this! Then you will have €{{ (savings - price).toFixed(2) }} left in your piggy bank.
                             </ng-container>
                             <ng-template #failureMessage>
-                              Je kunt dit helaas niet kopen. Je hebt niet genoeg spaargeld.
+                              Unfortunately, you cannot buy this. You do not have enough savings.
                             </ng-template>
                           </div>
                          <button class="toggle-panel" (click)="toggleMoneyPanel()" [disabled]="!price"><i class="fas fa-euro-sign" ></i></button>
@@ -71,7 +71,7 @@
                         
                         <div id="moneyPanel" [@slideInOut]="moneyPanelState" class="money-panel">
                             <div class="money-panel-content">
-                              <div class="moneyTitle">Wow, {{ formatAmount(price) }} dat is zoveel geld:</div>
+                              <div class="moneyTitle">Wow, {{ formatAmount(price) }} that is this much money:</div>
                               <div *ngFor="let coin of getBillsAndCoinsNeeded()" class="coin-info">
                                 <img [src]="coin.image" alt="Coin Image">
                                 <span class="coin-count">{{ coin.count }} X {{ formatAmount(coin.value/100) }}</span>
@@ -83,7 +83,7 @@
                               <!-- Add content for toy comparisons here -->
                               <div>
                                 <div class="money-panel-content">
-                                  <div class="moneyTitle">Voor {{formatAmount(price)}} kun je ook kopen:</div>
+                                  <div class="moneyTitle">For {{formatAmount(price)}} you can also buy:</div>
                                   <ng-container *ngFor="let item of referenceItems | sortReferenceItemsByPrice">
                                     <div class="toy-item">
                                       <img [src]="item.image" alt="Reference Item Image">
