@@ -55,7 +55,7 @@
                           </div>   
                         </div>                     
                         <h4 [style.color]="getForegroundTextColor(childData?.backgroundColor)">How much does it cost?</h4>
-                        <input type="number" [style.color]="getForegroundTextColor(childData?.backgroundColor)" [(ngModel)]="price" step="0.05" placeholder="Hoeveel kost het?" (input)="updateProgressBar()">
+                        <input type="number" [style.color]="getForegroundTextColor(childData?.backgroundColor)" [(ngModel)]="price" step="0.05" placeholder="How much does it cost?" (input)="updateProgressBar()">
                         
                         <div [ngClass]="{'result-message': true, 'success': canAfford, 'failure': !canAfford}">
                             <ng-container *ngIf="canAfford; else failureMessage">

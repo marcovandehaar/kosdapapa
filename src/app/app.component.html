@@ -2,7 +2,7 @@
   <!-- Use app-child component to display child panels -->
   <div class="page-container">
     <div class="childButtons">
-      <h4 class="header-text">Who's piggy bank do you want to see?</h4>
+      <h4 class="header-text">Whose piggy bank do you want to see?</h4>
       <button *ngFor="let child of children" (click)="toggleChildSection(child)">{{ child.name }}</button>
     </div>
     
