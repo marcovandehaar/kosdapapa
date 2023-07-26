@@ -1,18 +1,18 @@
 [
     {
-      "name": "John",
+      "name": "Tim",
       "favoriteColor": "#ff0000",
       "backgroundColor": "#fadede",
       "profileImage": "https://media.giphy.com/media/nYQXVoOOQX4VCJx99u/giphy.gif"
     },
     {
-      "name": "Jane",
+      "name": "Kaylee",
       "favoriteColor": "#0051ff",
       "backgroundColor": "#e6f5ff",
       "profileImage": "https://media.giphy.com/media/BTxVOLb3eG06mO6Egi/giphy.gif"
     },    
     {
-      "name": "Ali",
+      "name": "Denise",
       "favoriteColor": "#ff9900",
       "backgroundColor": "#d1ffdd",
       "profileImage": "https://media.giphy.com/media/GQp6sLO8QClljgBdO0/giphy.gif"
