@@ -15,6 +15,7 @@ You can define for who you want to show a piggybank site in the json file (/asse
 * favoriteColor - the child's favorite color, currently used for the progress bar
 * backgroundColor - currently used for the background of the piggy bank panel
 * profileImage - used to display an image in the piggy bank panel
+* allowance - used to add the weekly allowance to the savings
 
 Functions
 * you can see the balance of your piggy bank
