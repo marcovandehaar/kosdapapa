@@ -272,6 +272,52 @@
       justify-content: space-between;
       margin-top: 5px;
     }
+
+    .message-container {
+      margin-top: 10px;
+      padding: 5px;
+      background-color: rgba(0, 0, 255, 0.3);
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+    
+      .message {
+        margin-right: 10px;
+      }
+    
+      .reset-last-allowance-button {
+        background-color: #763368;
+        border: 1px solid #000;
+        border-radius: 5px;
+        padding: 5px 10px;
+        cursor: pointer;
+    
+        &:hover {
+          background-color: #000;
+          color: #fff;
+        }
+      }
+
+      /* child.component.scss */
+
+    }
+
+    .allowanceButton {
+      width: 100%;
+      background-color: #71aff2; /* Blue color */
+      color: #fff; /* White text color */
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      margin-top: 10px; 
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .allowanceButton:hover {
+      background-color: #1683f7; /* Darker blue on hover */
+    }
+    
     
   
   

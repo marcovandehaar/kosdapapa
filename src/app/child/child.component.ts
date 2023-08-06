@@ -44,10 +44,12 @@ export class ChildComponent implements OnChanges {
   referenceItems: ReferenceItem[] = [];
   defaultProfileImage = 'https://www.icegif.com/wp-content/uploads/2022/10/icegif-1218.gif';
   defaultColor = "#222";
+  lastAllowanceDate: Date | null = null;
 
 
   constructor(private localStorageService: LocalStorageService, 
-    private http: HttpClient) { }
+    private http: HttpClient) { 
+    }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['childData'] && changes['childData'].currentValue) {
@@ -104,6 +106,9 @@ export class ChildComponent implements OnChanges {
     this.updateProgressBar();
   }
 
+  clearFeedback(){
+    this.lastModifications.length = 0 ;
+  }
 
   showFeedback(modificationSum: string): void {
     this.lastModifications.unshift(modificationSum);
@@ -236,5 +241,32 @@ export class ChildComponent implements OnChanges {
     return newColor;
   }
 
+  allowanceSet(): boolean {
+    return typeof this.childData?.allowance === 'number';
+  }
+
+  updateLastAllowanceDate(): void {
+    this.lastAllowanceDate = new Date();
+    localStorage.setItem(this.childData?.name + '_lastAllowanceDate', this.lastAllowanceDate.toISOString());
+  }
+
+  addAllowance(): void {
+    const allowanceAmount = this.childData?.allowance;
+    if (allowanceAmount && typeof allowanceAmount === 'number') {
+      this.addMoney(allowanceAmount);
+      this.updateLastAllowanceDate(); // Call the method to update lastAllowanceDate
+    }
+  }
+
+  weeksSinceLastAllowance(): number {
+    if (!this.lastAllowanceDate) return 0;
+  
+    const oneWeekInMilliseconds = 7 * 24 * 60 * 60 * 1000; // Number of milliseconds in a week
+    const now = new Date();
+    const diffInMilliseconds = now.getTime() - this.lastAllowanceDate.getTime();
+    return Math.floor(diffInMilliseconds / oneWeekInMilliseconds);
+  }
+
+  
  
 }
