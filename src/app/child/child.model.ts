@@ -4,4 +4,5 @@ export interface Child {
     favoriteColor?: string;
     backgroundColor?: string;
     profileImage?: string;
+    allowance?: number;
   }

@@ -21,6 +21,16 @@
                         <div id="lynnPanel" [@slideInOut]="panelState" class="editPanel">
                             <input type="number" [(ngModel)]="savings" id="lynnEditSavings" [style.color]="getForegroundTextColor(childData?.backgroundColor)" step="0.05" (ngModelChange)="updateLocalStorageSavings()">
                             <div class="buttons-row">
+                              <div class="buttons-row-item">
+                                <!-- Button for the weekly allowance -->
+                                <button *ngIf="allowanceSet()" class="allowanceButton" (click)="addAllowance()">
+                                  +{{ childData?.allowance | currency: 'EUR' }} zakgeld
+                                </button>
+                              </div>
+                              <div *ngIf="weeksSinceLastAllowance() > 0" class="message-container">
+                                <p class="message">Het is {{ weeksSinceLastAllowance() }} weken geleden sinds je voor het laatst zakgeld hebt gestort.</p>
+                                <button class="reset-last-allowance-button" (click)="updateLastAllowanceDate()" title="Zakgeld klopt wel!">X</button>
+                              </div>
                                 <div class="buttons-row-item">
                                     <button class="lynn-mutation-button addButton" (click)="addMoney(0.50)">+€0.50</button>
                                     <button class="lynn-mutation-button addButton" (click)="addMoney(1.00)">+€1.00</button>

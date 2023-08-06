@@ -3,13 +3,15 @@
       "name": "Lynn",
       "favoriteColor": "#ff0000",
       "backgroundColor": "#fadede",
-      "profileImage": "https://media.tenor.com/Lmn8CF4LctoAAAAC/super-mario-odyssey-mario.gif"
+      "profileImage": "https://media.tenor.com/Lmn8CF4LctoAAAAC/super-mario-odyssey-mario.gif",
+      "allowance": 2.00
     },
     {
       "name": "Evi",
       "favoriteColor": "#0051ff",
       "backgroundColor": "#e6f5ff",
-      "profileImage": "https://media.tenor.com/3ugfpIYLTdsAAAAC/hi-hello.gif"
+      "profileImage": "https://media.tenor.com/3ugfpIYLTdsAAAAC/hi-hello.gif",
+      "allowance": 0.50
     }
   ]
   
