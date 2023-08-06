@@ -24,11 +24,11 @@
                               <div class="buttons-row-item">
                                 <!-- Button for the weekly allowance -->
                                 <button *ngIf="allowanceSet()" class="allowanceButton" (click)="addAllowance()">
-                                  +{{ childData?.allowance | currency: 'EUR' }} zakgeld
+                                  +{{ childData?.allowance | currency: 'EUR' }} allowance
                                 </button>
                               </div>
                               <div *ngIf="weeksSinceLastAllowance() > 0" class="message-container">
-                                <p class="message">Het is {{ weeksSinceLastAllowance() }} weken geleden sinds je voor het laatst zakgeld hebt gestort.</p>
+                                <p class="message">It has been {{ weeksSinceLastAllowance() }} weeks since you last added allowance.</p>
                                 <button class="reset-last-allowance-button" (click)="updateLastAllowanceDate()" title="Zakgeld klopt wel!">X</button>
                               </div>
                                 <div class="buttons-row-item">
