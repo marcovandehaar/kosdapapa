@@ -96,6 +96,13 @@ export class ChildComponent implements OnChanges {
 
   addMoney(amount: number): void {
     //console.log('adding amount: ' + amount);
+    //test
+    //this.lastAllowanceDate = new Date(2023,6,8);
+    //localStorage.setItem(this.childData?.name + '_lastAllowanceDate', this.lastAllowanceDate.toISOString());
+    //console.log('setting date to' + this.lastAllowanceDate.toISOString());
+    //console.log('weeksincelast is now: ' + this.weeksSinceLastAllowance());
+
+    //test
     this.previousSavings = this.savings;
     this.savings += amount;
     this.updateLocalStorageSavings();

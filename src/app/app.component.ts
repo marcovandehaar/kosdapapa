@@ -2,6 +2,7 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Child } from './child/child.model';
+import { ChildComponent } from './child/child.component';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +17,8 @@ export class AppComponent implements OnInit {
   aboutButtonRef!: ElementRef;
   aboutPanelTop: string | undefined;
   aboutPanelLeft: string | undefined;
+  @ViewChild(ChildComponent, { static: false })
+  private childComponent!: ChildComponent;
 
   constructor(private http: HttpClient) { }
 
@@ -25,11 +28,14 @@ export class AppComponent implements OnInit {
     });
   }
 
+  
+
   toggleChildSection(child: Child) {
     if (this.selectedChild === child) {
       this.selectedChild = null;
     } else {
       this.selectedChild = child;
+      this.childComponent.clearFeedback();
     }
   }
 
